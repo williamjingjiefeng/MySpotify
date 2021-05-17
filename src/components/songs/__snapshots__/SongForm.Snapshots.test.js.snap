@@ -1,0 +1,287 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`sets submit button label 'Save' when saving is false 1`] = `
+<form
+  onSubmit={[MockFunction]}
+>
+  <h2>
+    Edit
+     Song
+  </h2>
+  <div
+    className="form-group"
+  >
+    <label
+      htmlFor="title"
+    >
+      Title
+    </label>
+    <div
+      className="field"
+    >
+      <input
+        className="form-control"
+        name="title"
+        onChange={[MockFunction]}
+        type="text"
+        value="Scarborough Fair"
+      />
+    </div>
+  </div>
+  <div
+    className="form-group"
+  >
+    <label
+      htmlFor="singerId"
+    >
+      Singer
+    </label>
+    <div
+      className="field"
+    >
+      <select
+        className="form-control"
+        name="singerId"
+        onChange={[MockFunction]}
+        value={3}
+      >
+        <option
+          value=""
+        >
+          Select Singer
+        </option>
+        <option
+          value={1}
+        >
+          Katy Perry
+        </option>
+        <option
+          value={2}
+        >
+          Josh Groban
+        </option>
+        <option
+          value={3}
+        >
+          Sarah Brigtman
+        </option>
+        <option
+          value={4}
+        >
+          Andy Williams
+        </option>
+        <option
+          value={5}
+        >
+          Alec Benjamin
+        </option>
+        <option
+          value={6}
+        >
+          Katie Sky
+        </option>
+        <option
+          value={7}
+        >
+          Shawn Mendes & Camila Cabello
+        </option>
+        <option
+          value={8}
+        >
+          Madonna 
+        </option>
+      </select>
+    </div>
+  </div>
+  <div
+    className="form-group"
+  >
+    <label
+      htmlFor="youtubeId"
+    >
+      Youtube ID
+    </label>
+    <div
+      className="field"
+    >
+      <input
+        className="form-control"
+        name="youtubeId"
+        onChange={[MockFunction]}
+        type="text"
+        value="oJLNCTdJKu4"
+      />
+    </div>
+  </div>
+  <div
+    className="form-group"
+  >
+    <label
+      htmlFor="album"
+    >
+      Album
+    </label>
+    <div
+      className="field"
+    >
+      <input
+        className="form-control"
+        name="album"
+        onChange={[MockFunction]}
+        type="text"
+        value="La Luna"
+      />
+    </div>
+  </div>
+  <button
+    className="btn btn-primary"
+    disabled={false}
+    type="submit"
+  >
+    Save
+  </button>
+</form>
+`;
+
+exports[`sets submit button label 'Saving...' when saving is true 1`] = `
+<form
+  onSubmit={[MockFunction]}
+>
+  <h2>
+    Edit
+     Song
+  </h2>
+  <div
+    className="form-group"
+  >
+    <label
+      htmlFor="title"
+    >
+      Title
+    </label>
+    <div
+      className="field"
+    >
+      <input
+        className="form-control"
+        name="title"
+        onChange={[MockFunction]}
+        type="text"
+        value="Scarborough Fair"
+      />
+    </div>
+  </div>
+  <div
+    className="form-group"
+  >
+    <label
+      htmlFor="singerId"
+    >
+      Singer
+    </label>
+    <div
+      className="field"
+    >
+      <select
+        className="form-control"
+        name="singerId"
+        onChange={[MockFunction]}
+        value={3}
+      >
+        <option
+          value=""
+        >
+          Select Singer
+        </option>
+        <option
+          value={1}
+        >
+          Katy Perry
+        </option>
+        <option
+          value={2}
+        >
+          Josh Groban
+        </option>
+        <option
+          value={3}
+        >
+          Sarah Brigtman
+        </option>
+        <option
+          value={4}
+        >
+          Andy Williams
+        </option>
+        <option
+          value={5}
+        >
+          Alec Benjamin
+        </option>
+        <option
+          value={6}
+        >
+          Katie Sky
+        </option>
+        <option
+          value={7}
+        >
+          Shawn Mendes & Camila Cabello
+        </option>
+        <option
+          value={8}
+        >
+          Madonna 
+        </option>
+      </select>
+    </div>
+  </div>
+  <div
+    className="form-group"
+  >
+    <label
+      htmlFor="youtubeId"
+    >
+      Youtube ID
+    </label>
+    <div
+      className="field"
+    >
+      <input
+        className="form-control"
+        name="youtubeId"
+        onChange={[MockFunction]}
+        type="text"
+        value="oJLNCTdJKu4"
+      />
+    </div>
+  </div>
+  <div
+    className="form-group"
+  >
+    <label
+      htmlFor="album"
+    >
+      Album
+    </label>
+    <div
+      className="field"
+    >
+      <input
+        className="form-control"
+        name="album"
+        onChange={[MockFunction]}
+        type="text"
+        value="La Luna"
+      />
+    </div>
+  </div>
+  <button
+    className="btn btn-primary"
+    disabled={true}
+    type="submit"
+  >
+    Saving...
+  </button>
+</form>
+`;
