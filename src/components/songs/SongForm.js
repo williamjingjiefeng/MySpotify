@@ -6,10 +6,11 @@ import SelectInput from "../common/SelectInput";
 const SongForm = ({
   song,
   singers,
+  albums,
   onSave,
   onChange,
   saving = false,
-  errors = {}
+  errors = {},
 }) => {
   return (
     <form onSubmit={onSave}>
@@ -32,9 +33,9 @@ const SongForm = ({
         label="Singer"
         value={song.singerId || ""}
         defaultOption="Select Singer"
-        options={singers.map(singer => ({
+        options={singers.map((singer) => ({
           value: singer.id,
-          text: singer.name
+          text: singer.name,
         }))}
         onChange={onChange}
         error={errors.singer}
@@ -48,10 +49,15 @@ const SongForm = ({
         error={errors.youtubeId}
       />
 
-      <TextInput
-        name="album"
+      <SelectInput
+        name="albumId"
         label="Album"
-        value={song.album}
+        value={song.albumId || ""}
+        defaultOption="Select Album"
+        options={albums.map((album) => ({
+          value: album.id,
+          text: album.name,
+        }))}
         onChange={onChange}
         error={errors.album}
       />
@@ -65,11 +71,12 @@ const SongForm = ({
 
 SongForm.propTypes = {
   singers: PropTypes.array.isRequired,
+  albums: PropTypes.array.isRequired,
   song: PropTypes.object.isRequired,
   errors: PropTypes.object,
   onSave: PropTypes.func.isRequired,
   onChange: PropTypes.func.isRequired,
-  saving: PropTypes.bool
+  saving: PropTypes.bool,
 };
 
 export default SongForm;

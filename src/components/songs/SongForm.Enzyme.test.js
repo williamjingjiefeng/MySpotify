@@ -5,6 +5,7 @@ import { shallow } from "enzyme";
 function renderSongForm(args) {
   const defaultProps = {
     singers: [],
+    albums: [],
     song: {},
     saving: false,
     errors: {},

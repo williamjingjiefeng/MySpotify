@@ -1,12 +1,13 @@
 import React from "react";
 import { mount } from "enzyme";
-import { singers, newSong, songs } from "../../../tools/mockMusics";
+import { singers, newSong, songs, albums } from "../../../tools/mockMusics";
 import { ManageSongPage } from "./ManageSongPage";
 
 function render(args) {
   const defaultProps = {
     singers,
     songs,
+    albums,
     // Passed from React Router in real app, so just stubbing in for test.
     // Could also choose to use MemoryRouter as shown in Header.test.js,
     // or even wrap with React Router, depending on whether I
@@ -15,6 +16,7 @@ function render(args) {
     saveSong: jest.fn(),
     loadSingers: jest.fn(),
     loadSongs: jest.fn(),
+    loadAlbums: jest.fn(),
     song: newSong,
     match: {}
   };

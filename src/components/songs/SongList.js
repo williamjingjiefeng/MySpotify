@@ -14,7 +14,7 @@ const SongList = ({ songs, onDeleteClick }) => (
       </tr>
     </thead>
     <tbody>
-      {songs.map(song => {
+      {songs.map((song) => {
         return (
           <tr key={song.id}>
             <td>
@@ -29,7 +29,7 @@ const SongList = ({ songs, onDeleteClick }) => (
               <Link to={"/song/" + song.youtubeId}>{song.title}</Link>
             </td>
             <td>{song.singerName}</td>
-            <td>{song.album}</td>
+            <td>{song.albumName}</td>
             <td>
               <button
                 className="btn btn-outline-danger"
@@ -47,7 +47,7 @@ const SongList = ({ songs, onDeleteClick }) => (
 
 SongList.propTypes = {
   songs: PropTypes.array.isRequired,
-  onDeleteClick: PropTypes.func.isRequired
+  onDeleteClick: PropTypes.func.isRequired,
 };
 
 export default SongList;

@@ -74,7 +74,7 @@ function validateSong(song) {
     return "Youtube ID is required.";
   }
 
-  if (!song.album) {
+  if (!song.albumId) {
     return "Album is required.";
   }
 

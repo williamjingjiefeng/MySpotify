@@ -7,6 +7,7 @@ afterEach(cleanup);
 function renderSongForm(args) {
   let defaultProps = {
     singers: [],
+    albums: [],
     song: {},
     saving: false,
     errors: {},

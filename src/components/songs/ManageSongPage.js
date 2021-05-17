@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { connect } from "react-redux";
 import { loadSongs, saveSong } from "../../redux/actions/songActions";
 import { loadSingers } from "../../redux/actions/singerActions";
+import { loadAlbums } from "../../redux/actions/albumActions";
 import PropTypes from "prop-types";
 import SongForm from "./SongForm";
 import { newSong } from "../../../tools/mockMusics";
@@ -11,8 +12,10 @@ import { toast } from "react-toastify";
 export function ManageSongPage({
   songs,
   singers,
+  albums,
   loadSingers,
   loadSongs,
+  loadAlbums,
   saveSong,
   history,
   ...props
@@ -23,7 +26,7 @@ export function ManageSongPage({
 
   useEffect(() => {
     if (songs.length === 0) {
-      loadSongs().catch(error => {
+      loadSongs().catch((error) => {
         alert("Loading songs failed" + error);
       });
     } else {
@@ -31,28 +34,35 @@ export function ManageSongPage({
     }
 
     if (singers.length === 0) {
-      loadSingers().catch(error => {
+      loadSingers().catch((error) => {
         alert("Loading singers failed" + error);
+      });
+    }
+
+    if (albums.length === 0) {
+      loadAlbums().catch((error) => {
+        alert("Loading albums failed" + error);
       });
     }
   }, [props.song]);
 
   function handleChange(event) {
     const { name, value } = event.target;
-    setSong(prevSong => ({
+    setSong((prevSong) => ({
       ...prevSong,
-      [name]: name === "singerId" ? parseInt(value, 10) : value
+      [name]:
+        name === "singerId" || name === "albumId" ? parseInt(value, 10) : value,
     }));
   }
 
   function formIsValid() {
-    const { title, singerId, album, youtubeId } = song;
+    const { title, singerId, albumId, youtubeId } = song;
     const errors = {};
 
     if (!title) errors.title = "Title is required.";
     if (!singerId) errors.singer = "Singer is required";
     if (!youtubeId) errors.youtubeId = "Youtube ID is required";
-    if (!album) errors.album = "Album is required";
+    if (!albumId) errors.album = "Album is required";
 
     setErrors(errors);
     // Form is valid if the errors object still has no properties
@@ -68,7 +78,7 @@ export function ManageSongPage({
         toast.success("Song saved.");
         history.push("/songs");
       })
-      .catch(error => {
+      .catch((error) => {
         setSaving(false);
         setErrors({ onSave: error.message });
       });
@@ -81,6 +91,7 @@ export function ManageSongPage({
       song={song}
       errors={errors}
       singers={singers}
+      albums={albums}
       onChange={handleChange}
       onSave={handleSave}
       saving={saving}
@@ -92,14 +103,16 @@ ManageSongPage.propTypes = {
   song: PropTypes.object.isRequired,
   singers: PropTypes.array.isRequired,
   songs: PropTypes.array.isRequired,
+  albums: PropTypes.array.isRequired,
   loadSongs: PropTypes.func.isRequired,
   loadSingers: PropTypes.func.isRequired,
+  loadAlbums: PropTypes.func.isRequired,
   saveSong: PropTypes.func.isRequired,
-  history: PropTypes.object.isRequired
+  history: PropTypes.object.isRequired,
 };
 
 export function getSongByYoutubeId(songs, youtubeId) {
-  return songs.find(song => song.youtubeId === youtubeId) || null;
+  return songs.find((song) => song.youtubeId === youtubeId) || null;
 }
 
 function mapStateToProps(state, ownProps) {
@@ -111,17 +124,16 @@ function mapStateToProps(state, ownProps) {
   return {
     song,
     songs: state.songs,
-    singers: state.singers
+    singers: state.singers,
+    albums: state.albums,
   };
 }
 
 const mapDispatchToProps = {
   loadSongs,
   loadSingers,
-  saveSong
+  loadAlbums,
+  saveSong,
 };
 
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(ManageSongPage);
+export default connect(mapStateToProps, mapDispatchToProps)(ManageSongPage);

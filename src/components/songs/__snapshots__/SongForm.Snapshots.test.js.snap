@@ -88,7 +88,7 @@ exports[`sets submit button label 'Save' when saving is false 1`] = `
         <option
           value={8}
         >
-          Madonna 
+          Madonna
         </option>
       </select>
     </div>
@@ -117,20 +117,60 @@ exports[`sets submit button label 'Save' when saving is false 1`] = `
     className="form-group"
   >
     <label
-      htmlFor="album"
+      htmlFor="albumId"
     >
       Album
     </label>
     <div
       className="field"
     >
-      <input
+      <select
         className="form-control"
-        name="album"
+        name="albumId"
         onChange={[MockFunction]}
-        type="text"
-        value="La Luna"
-      />
+        value={1}
+      >
+        <option
+          value=""
+        >
+          Select Album
+        </option>
+        <option
+          value={1}
+        >
+          La Luna
+        </option>
+        <option
+          value={2}
+        >
+          After Hours
+        </option>
+        <option
+          value={3}
+        >
+          Narrated For You
+        </option>
+        <option
+          value={4}
+        >
+          LOVE STORY 1970
+        </option>
+        <option
+          value={5}
+        >
+          Closer
+        </option>
+        <option
+          value={6}
+        >
+          Shawn Mendes
+        </option>
+        <option
+          value={7}
+        >
+          Evita
+        </option>
+      </select>
     </div>
   </div>
   <button
@@ -231,7 +271,7 @@ exports[`sets submit button label 'Saving...' when saving is true 1`] = `
         <option
           value={8}
         >
-          Madonna 
+          Madonna
         </option>
       </select>
     </div>
@@ -260,20 +300,60 @@ exports[`sets submit button label 'Saving...' when saving is true 1`] = `
     className="form-group"
   >
     <label
-      htmlFor="album"
+      htmlFor="albumId"
     >
       Album
     </label>
     <div
       className="field"
     >
-      <input
+      <select
         className="form-control"
-        name="album"
+        name="albumId"
         onChange={[MockFunction]}
-        type="text"
-        value="La Luna"
-      />
+        value={1}
+      >
+        <option
+          value=""
+        >
+          Select Album
+        </option>
+        <option
+          value={1}
+        >
+          La Luna
+        </option>
+        <option
+          value={2}
+        >
+          After Hours
+        </option>
+        <option
+          value={3}
+        >
+          Narrated For You
+        </option>
+        <option
+          value={4}
+        >
+          LOVE STORY 1970
+        </option>
+        <option
+          value={5}
+        >
+          Closer
+        </option>
+        <option
+          value={6}
+        >
+          Shawn Mendes
+        </option>
+        <option
+          value={7}
+        >
+          Evita
+        </option>
+      </select>
     </div>
   </div>
   <button

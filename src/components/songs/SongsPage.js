@@ -2,6 +2,7 @@ import React from "react";
 import { connect } from "react-redux";
 import * as songActions from "../../redux/actions/songActions";
 import * as singerActions from "../../redux/actions/singerActions";
+import * as albumActions from "../../redux/actions/albumActions"
 import PropTypes from "prop-types";
 import { bindActionCreators } from "redux";
 import SongList from "./SongList";
@@ -11,26 +12,32 @@ import { toast } from "react-toastify";
 
 class SongsPage extends React.Component {
   state = {
-    redirectToAddSongPage: false
+    redirectToAddSongPage: false,
   };
 
   componentDidMount() {
-    const { songs, singers, actions } = this.props;
+    const { songs, singers, actions, albums } = this.props;
 
     if (songs.length === 0) {
-      actions.loadSongs().catch(error => {
+      actions.loadSongs().catch((error) => {
         alert("Loading songs failed" + error);
       });
     }
 
     if (singers.length === 0) {
-      actions.loadSingers().catch(error => {
+      actions.loadSingers().catch((error) => {
         alert("Loading singers failed" + error);
+      });
+    }
+
+    if (albums.length === 0) {
+      actions.loadAlbums().catch((error) => {
+        alert("Loading alnums failed" + error);
       });
     }
   }
 
-  handleDeleteSong = async song => {
+  handleDeleteSong = async (song) => {
     toast.success("Song deleted");
     try {
       await this.props.actions.deleteSong(song);
@@ -69,23 +76,27 @@ class SongsPage extends React.Component {
 SongsPage.propTypes = {
   singers: PropTypes.array.isRequired,
   songs: PropTypes.array.isRequired,
+  albums: PropTypes.array.isRequired,
   actions: PropTypes.object.isRequired,
-  loading: PropTypes.bool.isRequired
+  loading: PropTypes.bool.isRequired,
 };
 
 function mapStateToProps(state) {
   return {
     songs:
-      state.singers.length === 0
+      state.singers.length === 0 || state.albums.length === 0
         ? []
-        : state.songs.map(song => {
-          return {
-            ...song,
-            singerName: state.singers.find(a => a.id === song.singerId).name
-          };
-        }),
+        : state.songs.map((song) => {
+            return {
+              ...song,
+              singerName: state.singers.find((a) => a.id === song.singerId)
+                .name,
+              albumName: state.albums.find((z) => z.id === song.albumId).name,
+            };
+          }),
     singers: state.singers,
-    loading: state.apiCallsInProgress > 0
+    albums: state.albums,
+    loading: state.apiCallsInProgress > 0,
   };
 }
 
@@ -94,12 +105,10 @@ function mapDispatchToProps(dispatch) {
     actions: {
       loadSongs: bindActionCreators(songActions.loadSongs, dispatch),
       loadSingers: bindActionCreators(singerActions.loadSingers, dispatch),
-      deleteSong: bindActionCreators(songActions.deleteSong, dispatch)
-    }
+      loadAlbums: bindActionCreators(albumActions.loadAlbums, dispatch),
+      deleteSong: bindActionCreators(songActions.deleteSong, dispatch),
+    },
   };
 }
 
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(SongsPage);
+export default connect(mapStateToProps, mapDispatchToProps)(SongsPage);
