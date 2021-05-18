@@ -17,6 +17,10 @@ const Header = () => {
         Artists
       </NavLink>
       {" | "}
+      <NavLink to="/albums" activeStyle={activeStyle}>
+        Queued Albums
+      </NavLink>
+      {" | "}      
       <NavLink to="/about" activeStyle={activeStyle}>
         About
       </NavLink>

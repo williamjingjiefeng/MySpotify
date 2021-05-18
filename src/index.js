@@ -6,13 +6,16 @@ import App from "./components/App";
 import "./index.css";
 import configureStore from "./redux/configureStore";
 import { Provider as ReduxProvider } from "react-redux";
+import {QueueProvider} from "./services/queueContext";
 
 const store = configureStore();
 
 render(
   <ReduxProvider store={store}>
     <Router>
-      <App />
+      <QueueProvider>
+        <App />
+      </QueueProvider>
     </Router>
   </ReduxProvider>,
   document.getElementById("app")

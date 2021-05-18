@@ -15,8 +15,9 @@ export default function ArtistsPage() {
     }
 
     const singers = data[0].map(z => {
-        return { ...z, albums: data[1].reduce((a, o) => (o.singerId === z.id && a.push(o.name), a), []) };
+        //return { ...z, albums: data[1].reduce((a, o) => (o.singerId === z.id && a.push({ name: o.name, singerName: z.name }), a), []) };
+        return { ...z, albums: data[1].filter(y => y.singerId === z.id) };
     });
-    
+
     return (<SingerList singers={singers}></SingerList>);
 }
