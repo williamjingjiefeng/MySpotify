@@ -6,6 +6,8 @@ import Header from "./common/Header";
 import PageNotFound from "./PageNotFound";
 import SongsPage from "./songs/SongsPage";
 import ManageSongPage from "./songs/ManageSongPage"; // eslint-disable-line import/no-named-as-default
+import ArtistsPage from "./songs/ArtistsPage";
+
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
@@ -17,6 +19,7 @@ function App() {
         <Route exact path="/" component={HomePage} />
         <Route path="/about" component={AboutPage} />
         <Route path="/songs" component={SongsPage} />
+        <Route path="/artists" component={ArtistsPage} />
         <Route path="/song/:youtubeId" component={ManageSongPage} />
         <Route path="/song" component={ManageSongPage} />
         <Route component={PageNotFound} />

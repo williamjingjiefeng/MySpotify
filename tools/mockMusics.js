@@ -58,24 +58,27 @@ const songs = [
 ];
 
 const singers = [
-  { id: 1, name: "Katy Perry" },
-  { id: 2, name: "Josh Groban" },
-  { id: 3, name: "Sarah Brigtman" },
-  { id: 4, name: "Andy Williams" },
-  { id: 5, name: "Alec Benjamin" },
-  { id: 6, name: "Katie Sky" },
-  { id: 7, name: "Shawn Mendes & Camila Cabello" },
-  { id: 8, name: "Madonna" },
+  { id: 1, name: "Katy Perry", youtubeId: "UCYvmuw-JtVrTZQ-7Y4kd63Q" },
+  { id: 2, name: "Josh Groban", youtubeId: "UCIzJyWKY_d3540fhUa2eJUA" },
+  { id: 3, name: "Sarah Brigtman", youtubeId: "UCriL6-sBup_Tis7trjOALnw" },
+  { id: 4, name: "Andy Williams", youtubeId: "UCFhZg4_QmTTNs5ohg-8RENQ" },
+  { id: 5, name: "Alec Benjamin", youtubeId: "UCtWBCzqucZXq0M8jsqunM0g" },
+  { id: 6, name: "Katie Sky", youtubeId: "UCBLbC1QiA3y0fMhTgeOWXpw" },
+  { id: 7, name: "Shawn Mendes & Camila Cabello", youtubeId: "UCAvCL8hyXjSUHKEGuUPr1BA" },
+  { id: 8, name: "Madonna", youtubeId: "UC81VD6eeuLLSfyY_D-N8sVw" },
 ];
 
 const albums = [
-  { id: 1, singerId: 3, name: "La Luna" },
-  { id: 2, singerId: 6, name: "After Hours" },
-  { id: 3, singerId: 5, name: "Narrated For You" },
-  { id: 4, singerId: 4, name: "LOVE STORY 1970" },
-  { id: 5, singerId: 2, name: "Closer" },
-  { id: 6, singerId: 7, name: "Shawn Mendes" },
-  { id: 7, singerId: 8, name: "Evita" },
+  { id: 1, singerId: 3, name: "La Luna", youtubeId: "" },
+  { id: 2, singerId: 6, name: "After Hours", youtubeId: "" },
+  { id: 3, singerId: 5, name: "Narrated For You", youtubeId: "" },
+  { id: 4, singerId: 4, name: "LOVE STORY 1970", youtubeId: "" },
+  { id: 5, singerId: 2, name: "Closer", youtubeId: "" },
+  { id: 6, singerId: 7, name: "Shawn Mendes", youtubeId: "" },
+  { id: 7, singerId: 8, name: "Evita", youtubeId: "" },
+  { id: 8, singerId: 1, name: "Prisms", youtubeId: "" },
+  { id: 9, singerId: 1, name: "Witness", youtubeId: "zpcgL7DaTI0" },
+  { id: 10, singerId: 1, name: "Smile", youtubeId: "" },
 ];
 
 const newSong = {
