@@ -13,10 +13,7 @@ function render(args) {
     // or even wrap with React Router, depending on whether I
     // need to test React Router related behavior.
     history: {},
-    saveSong: jest.fn(),
-    loadSingers: jest.fn(),
-    loadSongs: jest.fn(),
-    loadAlbums: jest.fn(),
+    actions: {},
     song: newSong,
     match: {}
   };

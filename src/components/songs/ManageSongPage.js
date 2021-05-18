@@ -1,22 +1,21 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { connect } from "react-redux";
-import { loadSongs, saveSong } from "../../redux/actions/songActions";
-import { loadSingers } from "../../redux/actions/singerActions";
-import { loadAlbums } from "../../redux/actions/albumActions";
 import PropTypes from "prop-types";
 import SongForm from "./SongForm";
 import { newSong } from "../../../tools/mockMusics";
 import Spinner from "../common/Spinner";
 import { toast } from "react-toastify";
+import useFetch from "../../services/useFetch"
+import * as songActions from "../../redux/actions/songActions";
+import * as singerActions from "../../redux/actions/singerActions";
+import * as albumActions from "../../redux/actions/albumActions"
+import { bindActionCreators } from "redux";
 
 export function ManageSongPage({
   songs,
   singers,
   albums,
-  loadSingers,
-  loadSongs,
-  loadAlbums,
-  saveSong,
+  actions,
   history,
   ...props
 }) {
@@ -24,27 +23,7 @@ export function ManageSongPage({
   const [errors, setErrors] = useState({});
   const [saving, setSaving] = useState(false);
 
-  useEffect(() => {
-    if (songs.length === 0) {
-      loadSongs().catch((error) => {
-        alert("Loading songs failed" + error);
-      });
-    } else {
-      setSong({ ...props.song });
-    }
-
-    if (singers.length === 0) {
-      loadSingers().catch((error) => {
-        alert("Loading singers failed" + error);
-      });
-    }
-
-    if (albums.length === 0) {
-      loadAlbums().catch((error) => {
-        alert("Loading albums failed" + error);
-      });
-    }
-  }, [props.song]);
+  useFetch(songs, singers, albums, actions, props.song, setSong);
 
   function handleChange(event) {
     const { name, value } = event.target;
@@ -73,7 +52,7 @@ export function ManageSongPage({
     event.preventDefault();
     if (!formIsValid()) return;
     setSaving(true);
-    saveSong(song)
+    actions.saveSong(song)
       .then(() => {
         toast.success("Song saved.");
         history.push("/songs");
@@ -104,10 +83,7 @@ ManageSongPage.propTypes = {
   singers: PropTypes.array.isRequired,
   songs: PropTypes.array.isRequired,
   albums: PropTypes.array.isRequired,
-  loadSongs: PropTypes.func.isRequired,
-  loadSingers: PropTypes.func.isRequired,
-  loadAlbums: PropTypes.func.isRequired,
-  saveSong: PropTypes.func.isRequired,
+  actions: PropTypes.object.isRequired,
   history: PropTypes.object.isRequired,
 };
 
@@ -129,11 +105,15 @@ function mapStateToProps(state, ownProps) {
   };
 }
 
-const mapDispatchToProps = {
-  loadSongs,
-  loadSingers,
-  loadAlbums,
-  saveSong,
-};
+function mapDispatchToProps(dispatch) {
+  return {
+    actions: {
+      loadSongs: bindActionCreators(songActions.loadSongs, dispatch),
+      loadSingers: bindActionCreators(singerActions.loadSingers, dispatch),
+      loadAlbums: bindActionCreators(albumActions.loadAlbums, dispatch),
+      saveSong: bindActionCreators(songActions.saveSong, dispatch),
+    },
+  };
+}
 
 export default connect(mapStateToProps, mapDispatchToProps)(ManageSongPage);

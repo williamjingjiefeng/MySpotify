@@ -9,33 +9,12 @@ import SongList from "./SongList";
 import { Redirect } from "react-router-dom";
 import Spinner from "../common/Spinner";
 import { toast } from "react-toastify";
+import { Fetch } from "../../services/useFetch"
 
 class SongsPage extends React.Component {
   state = {
     redirectToAddSongPage: false,
   };
-
-  componentDidMount() {
-    const { songs, singers, actions, albums } = this.props;
-
-    if (songs.length === 0) {
-      actions.loadSongs().catch((error) => {
-        alert("Loading songs failed" + error);
-      });
-    }
-
-    if (singers.length === 0) {
-      actions.loadSingers().catch((error) => {
-        alert("Loading singers failed" + error);
-      });
-    }
-
-    if (albums.length === 0) {
-      actions.loadAlbums().catch((error) => {
-        alert("Loading alnums failed" + error);
-      });
-    }
-  }
 
   handleDeleteSong = async (song) => {
     toast.success("Song deleted");
@@ -62,12 +41,18 @@ class SongsPage extends React.Component {
               Add Song
             </button>
 
-            <SongList
-              onDeleteClick={this.handleDeleteSong}
-              songs={this.props.songs}
-            />
+            <Fetch songs={this.props.songs} singers={this.props.singers} albums={this.props.albums} actions={this.props.actions}>
+              {() => {
+                return <SongList
+                  onDeleteClick={this.handleDeleteSong}
+                  songs={this.props.songs}
+                />
+              }
+              }
+            </Fetch>
           </>
-        )}
+        )
+        }
       </>
     );
   }
@@ -87,13 +72,13 @@ function mapStateToProps(state) {
       state.singers.length === 0 || state.albums.length === 0
         ? []
         : state.songs.map((song) => {
-            return {
-              ...song,
-              singerName: state.singers.find((a) => a.id === song.singerId)
-                .name,
-              albumName: state.albums.find((z) => z.id === song.albumId).name,
-            };
-          }),
+          return {
+            ...song,
+            singerName: state.singers.find((a) => a.id === song.singerId)
+              .name,
+            albumName: state.albums.find((z) => z.id === song.albumId).name,
+          };
+        }),
     singers: state.singers,
     albums: state.albums,
     loading: state.apiCallsInProgress > 0,
