@@ -1,11 +1,12 @@
 import React from "react";
 import PropTypes from "prop-types";
-import { Link} from "react-router-dom";
+import { Link } from "react-router-dom";
 import { useQueue } from "../../services/queueContext";
+import { toast } from "react-toastify";
 
 export default function SingerList({ singers }) {
-  const { dispatch } = useQueue();
-  
+  const { queue, dispatch } = useQueue();
+
   return (
     <table id="singerList" className="table">
       <thead>
@@ -36,7 +37,12 @@ export default function SingerList({ singers }) {
                       return (
                         <li key={z.name} className="list-group-item justify-content-between align-items-center">
                           <Link onClick={() => {
-                            dispatch({ type: "add", name: z.name, singerName: singer.name });
+                            if (queue.find(y => y.name === z.name)) {
+                              toast.success("Selected album already in the queue.")
+                            } else {
+                              toast.success("Selected album added to queue albums.")
+                              dispatch({ type: "add", name: z.name, singerName: singer.name });
+                            }
                           }} to="/albums">{z.name}</Link>
                         </li>);
                     })}
