@@ -3,6 +3,7 @@ import { NavLink } from "react-router-dom";
 
 const Header = () => {
   const activeStyle = { color: "#F15B2A" };
+  const floatToRight = { float: "right" };
   return (
     <nav>
       <NavLink to="/" activeStyle={activeStyle} exact>
@@ -20,9 +21,12 @@ const Header = () => {
       <NavLink to="/albums" activeStyle={activeStyle}>
         Queued Albums
       </NavLink>
-      {" | "}      
+      {" | "}
       <NavLink to="/about" activeStyle={activeStyle}>
         About
+      </NavLink>
+      <NavLink to="/themes" activeStyle={activeStyle} style={floatToRight}>
+        Themes
       </NavLink>
     </nav>
   );

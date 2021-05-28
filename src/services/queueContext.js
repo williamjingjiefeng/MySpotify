@@ -1,11 +1,15 @@
 import React, { useReducer, useEffect, useContext } from "react";
 import queueReducer from "./queueReducer";
+import * as themes from "../theme/schema.json";
+import { getFromLocalStorage, setToLocalStorage } from "../utils/storage";
+
+setToLocalStorage("all-themes", themes.default);
 
 export const QueueContext = React.createContext(null);
 
 let initialQueue;
 try {
-  const queue = JSON.parse(localStorage.getItem("queue"));
+  const queue = getFromLocalStorage("queue");
   initialQueue = queue != null ? queue : [];
 } catch {
   console.error("The queue items could not be parsed into JSON.");
@@ -14,9 +18,7 @@ try {
 
 export function QueueProvider(props) {
   const [queue, dispatch] = useReducer(queueReducer, initialQueue);
-  useEffect(
-    () =>
-      localStorage.setItem("queue", JSON.stringify(queue)), [queue]);
+  useEffect(() => setToLocalStorage("queue", queue), [queue]);
   const contextValue = {
     queue,
     dispatch,

@@ -34,7 +34,10 @@
     "react-toastify": "4.5.2",
     "redux": "4.0.1",
     "redux-thunk": "2.3.0",
-    "reselect": "4.0.0"
+    "reselect": "4.0.0",
+    "styled-components": "^5.2.0",
+    "webfontloader": "^1.6.28",
+    "shortid": "^2.2.16"
   },
   "devDependencies": {
     "@babel/core": "7.3.4",
