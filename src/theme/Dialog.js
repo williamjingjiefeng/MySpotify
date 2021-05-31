@@ -91,10 +91,10 @@ const Dialog = props => {
 
 
 Dialog.propTypes = {
-    open: PropTypes.object.isRequired,
+    open: PropTypes.bool.isRequired,
     callback: PropTypes.func.isRequired,
     body: PropTypes.element.isRequired,
-    header: PropTypes.element.isRequired
+    header: PropTypes.string.isRequired
   };
   
 export default Dialog;

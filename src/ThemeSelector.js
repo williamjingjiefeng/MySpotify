@@ -5,6 +5,7 @@ import { useTheme } from './theme/useTheme';
 import { getFromLocalStorage } from './utils/storage';
 import Dialog from './theme/Dialog';
 import CreateThemeContent from './theme/CreateThemeContent'
+import PropTypes from 'prop-types';
 
 const ThemedButton = styled.button`
     border: 0;
@@ -38,7 +39,7 @@ const Header = styled.h2`
     justify-content: space-around;
 `;
 
-export default (props) => {
+const ThemeSelector = (props) => {
     const themesFromStore = getFromLocalStorage('all-themes');
     const [data, setData] = useState(themesFromStore.data);
     const [themes, setThemes] = useState([]);
@@ -85,7 +86,7 @@ export default (props) => {
                 fontFamily: `${data[_.camelCase(props.theme.name)].font}`
             }}>
                 <span>Click on the button to set this theme</span>
-                <ThemedButton onClick={(theme) => themeSwitcher(props.theme)}
+                <ThemedButton onClick={() => themeSwitcher(props.theme)}
                     style={{
                         backgroundColor: `${data[_.camelCase(props.theme.name)].colors.button.background}`,
                         color: `${data[_.camelCase(props.theme.name)].colors.button.text}`,
@@ -95,6 +96,10 @@ export default (props) => {
                 </ThemedButton>
             </Wrapper>
         )
+    }
+
+    ThemeCard.propTypes = {
+        theme: PropTypes.object.isRequired
     }
 
     return (
@@ -117,3 +122,9 @@ export default (props) => {
         </div>
     )
 }
+
+ThemeSelector.propTypes = {
+    setSelectedTheme: PropTypes.func.isRequired
+}
+
+export default ThemeSelector;

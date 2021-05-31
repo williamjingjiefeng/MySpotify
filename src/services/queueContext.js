@@ -2,6 +2,7 @@ import React, { useReducer, useEffect, useContext } from "react";
 import queueReducer from "./queueReducer";
 import * as themes from "../theme/schema.json";
 import { getFromLocalStorage, setToLocalStorage } from "../utils/storage";
+import PropTypes from "prop-types";
 
 setToLocalStorage("all-themes", themes.default);
 
@@ -28,6 +29,11 @@ export function QueueProvider(props) {
       {props.children}
     </QueueContext.Provider>
   );
+}
+
+QueueProvider.propTypes =
+{
+  children: PropTypes.object.isRequired
 }
 
 export function useQueue() {
