@@ -22,7 +22,7 @@
 ### Production Dependencies
 
 | **Dependency**   | **Use**                                                                         |
-| ---------------- | --------------------------------------------------------------------------------|                            |
+| ---------------- | ------------------------------------------------------------------------------- |                            |
 | bootstrap        | CSS Framework                                                                   |
 | immer            | Helper for working with immutable data                                          |
 | prop-types       | Declare types for props passed into React components                            |
