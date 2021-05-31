@@ -21,23 +21,23 @@
 
 ### Production Dependencies
 
-| **Dependency**   | **Use**                                                                         |
-| ---------------- | ------------------------------------------------------------------------------- |                            |
-| bootstrap        | CSS Framework                                                                   |
-| immer            | Helper for working with immutable data                                          |
-| prop-types       | Declare types for props passed into React components                            |
-| react            | React library                                                                   |
-| react-dom        | React library for DOM rendering                                                 |
-| react-redux      | Connects React components to Redux                                              |
-| react-router-dom | React library for routing                                                       |
-| react-toastify   | Display messages to the user                                                    |
-| redux            | Library for unidirectional data flows                                           |
-| redux-thunk      | Async redux library                                                             |
-| reselect         | Memoize selectors for performance                                               |
-| lodash           | Take the hassle out of working with arrays, numbers, objects, strings, etc.     |
-| shortid          | Create amazingly short non-sequential url-friendly unique ids                   |
-| styled-components| Utilise tagged template literals (addition to JavaScript) and the power of CSS  |
-| webfontloader    | Provide a common interface to loading fonts regardless of the source            |
+| **Dependency**    | **Use**                                                                         |
+| ----------------  | ------------------------------------------------------------------------------- |                            |
+| bootstrap         | CSS Framework                                                                   |
+| immer             | Helper for working with immutable data                                          |
+| prop-types        | Declare types for props passed into React components                            |
+| react             | React library                                                                   |
+| react-dom         | React library for DOM rendering                                                 |
+| react-redux       | Connects React components to Redux                                              |
+| react-router-dom  | React library for routing                                                       |
+| react-toastify    | Display messages to the user                                                    |
+| redux             | Library for unidirectional data flows                                           |
+| redux-thunk       | Async redux library                                                             |
+| reselect          | Memoize selectors for performance                                               |
+| lodash            | Take the hassle out of working with arrays, numbers, objects, strings, etc.     |
+| shortid           | Create amazingly short non-sequential url-friendly unique ids                   |
+| styled-components | Utilise tagged template literals (addition to JavaScript) and the power of CSS  |
+| webfontloader     | Provide a common interface to loading fonts regardless of the source            |
 
 ### Development Dependencies
 
