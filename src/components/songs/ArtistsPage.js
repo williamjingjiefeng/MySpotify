@@ -1,16 +1,16 @@
 import React from "react";
-import useFatchAll from "../../services/useFetchAll";
+import useFetchAll from "../../services/useFetchAll";
 import Spinner from "../common/Spinner";
 import SingerList from "./ArtistList";
 
 export default function ArtistsPage() {
-    const { data, error, loading } = useFatchAll(["/singers/", "/albums/"]);
+    const { data, error, loading } = useFetchAll(["/singers/", "/albums/"]);
 
     if (error) {
         throw error;
     }
 
-    if (loading) {
+    if (loading || data === null) {
         return <Spinner></Spinner>;
     }
 
