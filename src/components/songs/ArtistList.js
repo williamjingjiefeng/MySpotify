@@ -25,6 +25,7 @@ export default function SingerList({ singers }) {
                 <a
                   className="btn btn-light"
                   href={"https://www.youtube.com/channel/" + singer.youtubeId}
+                  target="_blank" rel="noopener noreferrer"
                 >
                   Subscribe
               </a>

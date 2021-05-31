@@ -21,6 +21,7 @@ const SongList = ({ songs, onDeleteClick }) => (
               <a
                 className="btn btn-light"
                 href={"https://www.youtube.com/watch?v=" + song.youtubeId}
+                target="_blank" rel="noopener noreferrer"
               >
                 Listen
               </a>
