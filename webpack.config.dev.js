@@ -37,15 +37,25 @@ module.exports = {
       {
         test: /\.(js|jsx)$/,
         exclude: /node_modules/,
-        use: ["babel-loader", "eslint-loader"],
+        resolve: {
+          extensions: [".jsx", ".js", ".json"]
+        },
+        use: ["babel-loader", "eslint-loader"]
+      },
+      {
+        test: /\.tsx$/,
+        exclude: /node_modules/,
+        resolve: {
+          extensions: [".tsx", ".ts"]
+        },
+        use: {
+          loader: "ts-loader"
+        }
       },
       {
         test: /(\.css)$/,
         use: ["style-loader", "css-loader"]
       }
     ]
-  },
-  resolve: {
-    extensions: ['.js', '.jsx']
   }
 };

@@ -17,7 +17,7 @@ import QueuedAlbumsPage from "./songs/QueuedAlbumsPage";
 
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import ErrorBoundary from "../ErrorBoundary.jsx";
+import ErrorBoundary from "../ErrorBoundary.tsx";
 
 function App() {
   const { theme, themeLoaded, getFonts } = useTheme();
