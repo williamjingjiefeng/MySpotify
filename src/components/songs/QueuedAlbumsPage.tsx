@@ -1,12 +1,17 @@
 
-import React from "react";
+import React, { MouseEvent } from "react";
 import { toast } from "react-toastify";
-import { useQueue } from "../../services/queueContext";
+import { useQueue } from "../../services/queueContext.js";
 
+interface iQueueItem {
+    name: string;
+    singerName: string;
+}
+  
 export default function QueuedAlbumsPage() {
     const { queue, dispatch } = useQueue();
 
-    async function handleRemove(e, name) {
+    async function handleRemove(e: React.MouseEvent<HTMLButtonElement, globalThis.MouseEvent>, name: string) {
         e.preventDefault();
         toast.success("Album was removed from the queue.");
         try {
@@ -26,7 +31,7 @@ export default function QueuedAlbumsPage() {
                 </tr>
             </thead>
             <tbody>
-                {queue.map((q) => {
+                {queue.map((q: iQueueItem) => {
                     return (
                         <tr key={q.name}>
                             <td>{q.name}</td>

@@ -13,7 +13,7 @@ import PageNotFound from "./PageNotFound";
 import SongsPage from "./songs/SongsPage";
 import ManageSongPage from "./songs/ManageSongPage"; // eslint-disable-line import/no-named-as-default
 import ArtistsPage from "./songs/ArtistsPage";
-import QueuedAlbumsPage from "./songs/QueuedAlbumsPage";
+import QueuedAlbumsPage from "./songs/QueuedAlbumsPage.tsx";
 
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
