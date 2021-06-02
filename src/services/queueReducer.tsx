@@ -1,9 +1,11 @@
-export default function queueReducer(queue, action) {
+import iQueueItem from './iQueueItem';
+
+export default function queueReducer(queue: iQueueItem[], action: { type: string, queueItem: iQueueItem }) {
   switch (action.type) {
     case "empty":
       return [];
     case "add": {
-      const { name, singerName } = action;
+      const { name, singerName } = action.queueItem;
       const itemInQueue = queue.find((i) => i.name === name);
       if (itemInQueue) {
         return queue;
@@ -13,7 +15,7 @@ export default function queueReducer(queue, action) {
       }
     }
     case "remove": {
-      const { name } = action;
+      const { name } = action.queueItem;
       const itemInQueue = queue.find((i) => i.name === name);
       if (itemInQueue) {
         return queue.filter(z => z.name !== name);

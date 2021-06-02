@@ -170,6 +170,21 @@ exports[`sets submit button label 'Save' when saving is false 1`] = `
         >
           Evita
         </option>
+        <option
+          value={8}
+        >
+          Prisms
+        </option>
+        <option
+          value={9}
+        >
+          Witness
+        </option>
+        <option
+          value={10}
+        >
+          Smile
+        </option>
       </select>
     </div>
   </div>
@@ -352,6 +367,21 @@ exports[`sets submit button label 'Saving...' when saving is true 1`] = `
           value={7}
         >
           Evita
+        </option>
+        <option
+          value={8}
+        >
+          Prisms
+        </option>
+        <option
+          value={9}
+        >
+          Witness
+        </option>
+        <option
+          value={10}
+        >
+          Smile
         </option>
       </select>
     </div>

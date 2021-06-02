@@ -1,7 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 import { Link } from "react-router-dom";
-import { useQueue } from "../../services/queueContext";
+import { useQueue } from "../../services/queueContext.tsx";
 import { toast } from "react-toastify";
 
 export default function SingerList({ singers }) {
@@ -42,7 +42,7 @@ export default function SingerList({ singers }) {
                               toast.success("Selected album already in the queue.")
                             } else {
                               toast.success("Selected album added to queue albums.")
-                              dispatch({ type: "add", name: z.name, singerName: singer.name });
+                              dispatch({ type: "add", queueItem: { name: z.name, singerName: singer.name } });
                             }
                           }} to="/albums">{z.name}</Link>
                         </li>);

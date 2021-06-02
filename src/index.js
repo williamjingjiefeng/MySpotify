@@ -6,7 +6,7 @@ import App from "./components/App";
 import "./index.css";
 import configureStore from "./redux/configureStore";
 import { Provider as ReduxProvider } from "react-redux";
-import { QueueProvider } from "./services/queueContext";
+import { QueueProvider } from "./services/queueContext.tsx";
 
 const store = configureStore();
 

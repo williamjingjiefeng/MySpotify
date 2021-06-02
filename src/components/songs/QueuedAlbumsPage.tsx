@@ -1,21 +1,17 @@
 
-import React, { MouseEvent } from "react";
+import React from "react";
 import { toast } from "react-toastify";
-import { useQueue } from "../../services/queueContext.js";
+import { useQueue } from "../../services/queueContext";
+import iQueueItem from "../../services/iQueueItem";
 
-interface iQueueItem {
-    name: string;
-    singerName: string;
-}
-  
 export default function QueuedAlbumsPage() {
     const { queue, dispatch } = useQueue();
 
-    async function handleRemove(e: React.MouseEvent<HTMLButtonElement, globalThis.MouseEvent>, name: string) {
+    async function handleRemove(e: React.MouseEvent<HTMLButtonElement, globalThis.MouseEvent>, queueItem: iQueueItem) {
         e.preventDefault();
         toast.success("Album was removed from the queue.");
         try {
-            await dispatch({ type: "remove", name })
+            await dispatch({ type: "remove", queueItem })
         } catch (error) {
             toast.error("Remove failed: " + error.message, { autoClose: false });
         }
@@ -36,7 +32,7 @@ export default function QueuedAlbumsPage() {
                         <tr key={q.name}>
                             <td>{q.name}</td>
                             <td> {q.singerName}</td>
-                            <td><button className="btn btn-outline-danger" onClick={(e) => handleRemove(e, q.name)}>Remove</button></td>
+                            <td><button className="btn btn-outline-danger" onClick={(e) => handleRemove(e, q)}>Remove</button></td>
                         </tr>
                     );
                 })}

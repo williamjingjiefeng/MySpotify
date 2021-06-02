@@ -1,14 +1,20 @@
 import React, { useReducer, useEffect, useContext } from "react";
 import queueReducer from "./queueReducer";
-import * as themes from "../theme/schema.json";
-import { getFromLocalStorage, setToLocalStorage } from "../utils/storage";
+import {default as themes} from "../theme/schema.json";
+import { getFromLocalStorage, setToLocalStorage } from "../utils/storage.js";
 import PropTypes from "prop-types";
+import iQueueItem from "./iQueueItem";
 
-setToLocalStorage("all-themes", themes.default);
+setToLocalStorage("all-themes", themes);
 
-export const QueueContext = React.createContext(null);
+export const QueueContext = React.createContext<{
+  queue: iQueueItem[], dispatch: React.Dispatch<{
+    type: string;
+    queueItem: iQueueItem;
+  }>
+} | null>(null);
 
-let initialQueue;
+let initialQueue: iQueueItem[] = [];
 try {
   const queue = getFromLocalStorage("queue");
   initialQueue = queue != null ? queue : [];
@@ -17,8 +23,13 @@ try {
   initialQueue = [];
 }
 
-export function QueueProvider(props) {
+interface iProps {
+  children: React.ReactNode;
+}
+
+export function QueueProvider(props: iProps) {
   const [queue, dispatch] = useReducer(queueReducer, initialQueue);
+
   useEffect(() => setToLocalStorage("queue", queue), [queue]);
   const contextValue = {
     queue,
