@@ -35,18 +35,10 @@ module.exports = {
   module: {
     rules: [
       {
-        test: /\.(js|jsx)$/,
+        test: /\.(js|jsx|ts|tsx)$/,
         exclude: /node_modules/,
         resolve: {
-          extensions: [".jsx", ".js", ".json"]
-        },
-        use: ["babel-loader", "eslint-loader"]
-      },
-      {
-        test: /\.tsx$/,
-        exclude: /node_modules/,
-        resolve: {
-          extensions: [".tsx", ".ts"]
+          extensions: [".js", ".jsx", ".ts", ".tsx"]
         },
         use: {
           loader: "ts-loader"

@@ -1,7 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 import { Link } from "react-router-dom";
-import { useQueue } from "../../services/queueContext.tsx";
+import { useQueue } from "../../services/queueContext";
 import { toast } from "react-toastify";
 
 export default function SingerList({ singers }) {
