@@ -3,6 +3,7 @@ import React from "react";
 import { toast } from "react-toastify";
 import { useQueue } from "../../services/queueContext";
 import iQueueItem from "../../services/iQueueItem";
+import "./QueuedAlbumsPage.scss";
 
 export default function QueuedAlbumsPage() {
     const { queue, dispatch } = useQueue();
@@ -32,7 +33,7 @@ export default function QueuedAlbumsPage() {
                         <tr key={q.name}>
                             <td>{q.name}</td>
                             <td> {q.singerName}</td>
-                            <td><button className="btn btn-outline-danger" onClick={(e) => handleRemove(e, q)}>Remove</button></td>
+                            <td><button className="btn btn-outline-danger remove" onClick={(e) => handleRemove(e, q)}>Remove</button></td>
                         </tr>
                     );
                 })}
