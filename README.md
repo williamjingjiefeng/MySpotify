@@ -22,11 +22,11 @@
 8. After changing ErrorBounary.js to ErrorBounary.tsx, when compiling, if system still cannot resolve:
     import ErrorBoundary from "../ErrorBoundary";
     
-    you can choose to resolve tsx extension as follows via dding .tsx extension:
+    you can choose to resolve tsx extension as follows via adding .tsx extension:
 
     import ErrorBoundary from "../ErrorBoundary.tsx";
 
-    With this change, the code is compiled successfully and able to run blithely as well, or alternatively, you can select to:
+    With this change, the code should be compiled successfully and able to run blithely, or alternatively, you can select to:
 
     8.1 comment out the babel loader section
     

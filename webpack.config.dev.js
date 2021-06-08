@@ -12,7 +12,7 @@ module.exports = {
   output: {
     path: path.resolve(__dirname, "build"),
     publicPath: "/",
-    filename: "bundle.js"
+    filename: "bundle.js",
   },
   devServer: {
     stats: "minimal",
@@ -21,16 +21,16 @@ module.exports = {
     disableHostCheck: true,
     headers: { "Access-Control-Allow-Origin": "*" },
     https: false,
-    open: true
+    open: true,
   },
   plugins: [
     new webpack.DefinePlugin({
-      "process.env.API_URL": JSON.stringify("http://localhost:3001")
+      "process.env.API_URL": JSON.stringify("http://localhost:3001"),
     }),
     new HtmlWebpackPlugin({
       template: "src/index.html",
-      favicon: "src/favicon.ico"
-    })
+      favicon: "src/favicon.ico",
+    }),
   ],
   module: {
     rules: [
@@ -38,16 +38,16 @@ module.exports = {
         test: /\.(js|jsx|ts|tsx)$/,
         exclude: /node_modules/,
         resolve: {
-          extensions: [".js", ".jsx", ".ts", ".tsx"]
+          extensions: [".js", ".jsx", ".ts", ".tsx"],
         },
         use: {
-          loader: "ts-loader"
-        }
+          loader: "ts-loader",
+        },
       },
       {
         test: /(\.(s)?css)$/,
-        use: ["style-loader", "css-loader", "sass-loader"]
-      }
-    ]
-  }
+        use: ["style-loader", "css-loader", "sass-loader"],
+      },
+    ],
+  },
 };
