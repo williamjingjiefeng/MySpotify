@@ -18,6 +18,24 @@
 4. On Windows? Open your console as an administrator. This will assure the console has the necessary rights to perform installs.
 5. Ensure you do not have NODE_ENV=production in your env variables as it will not install the devDependencies. To check run this on the command line: `set NODE_ENV`. If it comes back as production, you need to clear this env variable.
 6. Nothing above work? Delete your node_modules folder and re-run "npm cache clean --force" and "npm install."
+7. How to setup SASS in VSCode: https://onedebos.wordpress.com/2019/08/01/how-to-setup-sass-in-vscode/
+8. After changing ErrorBounary.js to ErrorBounary.tsx, when compiling, if system still cannot resolve:
+    import ErrorBoundary from "../ErrorBoundary";
+    
+    you can choose to resolve tsx extension as follows via dding .tsx extension:
+
+    import ErrorBoundary from "../ErrorBoundary.tsx";
+
+    With this change, the code is compiled successfully and able to run blithely as well, or alternatively, you can select to:
+
+    8.1 comment out the babel loader section
+    8.2 modify ts-loader section as follow:
+
+        test: /\.(js|jsx|ts|tsx)$/,
+        exclude: /node_modules/,
+        resolve: {
+          extensions: [".js", ".jsx", ".ts", ".tsx"]
+        }
 
 ### Production Dependencies
 

@@ -25,29 +25,52 @@ export default function SingerList({ singers }) {
                 <a
                   className="btn btn-light"
                   href={"https://www.youtube.com/channel/" + singer.youtubeId}
-                  target="_blank" rel="noopener noreferrer"
+                  target="_blank"
+                  rel="noopener noreferrer"
                 >
                   Subscribe
-              </a>
+                </a>
               </td>
               <td>{singer.name}</td>
               <td>
-                <ul className="list-group">
-                  {
-                    singer.albums.map(z => {
+                <table className="table table-striped table-sm">
+                  <thead></thead>
+                  <tbody>
+                    {singer.albums.map((z) => {
                       return (
-                        <li key={z.name} className="list-group-item justify-content-between align-items-center">
-                          <Link onClick={() => {
-                            if (queue.find(y => y.name === z.name)) {
-                              toast.success("Selected album already in the queue.")
-                            } else {
-                              toast.success("Selected album added to queue albums.")
-                              dispatch({ type: "add", queueItem: { name: z.name, singerName: singer.name } });
-                            }
-                          }} to="/albums">{z.name}</Link>
-                        </li>);
+                        <tr key={z.name}>
+                          <td>{z.name}</td>
+                          <td style={{ textAlign: "right" }}>
+                            <Link
+                              className="btn"
+                              onClick={() => {
+                                if (queue.find((y) => y.name === z.name)) {
+                                  toast.success(
+                                    "Selected album already in the queue."
+                                  );
+                                } else {
+                                  toast.success(
+                                    "Selected album added to queue albums."
+                                  );
+                                  dispatch({
+                                    type: "add",
+                                    queueItem: {
+                                      name: z.name,
+                                      singerName: singer.name,
+                                    },
+                                  });
+                                }
+                              }}
+                              to="/albums"
+                            >
+                              Queue
+                            </Link>
+                          </td>
+                        </tr>
+                      );
                     })}
-                </ul>
+                  </tbody>
+                </table>
               </td>
             </tr>
           );
@@ -58,5 +81,5 @@ export default function SingerList({ singers }) {
 }
 
 SingerList.propTypes = {
-  singers: PropTypes.array.isRequired
+  singers: PropTypes.array.isRequired,
 };
