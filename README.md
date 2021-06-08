@@ -29,6 +29,7 @@
     With this change, the code is compiled successfully and able to run blithely as well, or alternatively, you can select to:
 
     8.1 comment out the babel loader section
+    
     8.2 modify ts-loader section as follow:
 
         test: /\.(js|jsx|ts|tsx)$/,

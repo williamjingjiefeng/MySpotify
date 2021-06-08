@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 import { useQueue } from "../../services/queueContext";
 import { toast } from "react-toastify";
 
-export default function SingerList({ singers }) {
+export default function SingerList({ singers, history }) {
   const { queue, dispatch } = useQueue();
 
   return (
@@ -41,7 +41,7 @@ export default function SingerList({ singers }) {
                         <tr key={z.name}>
                           <td>{z.name}</td>
                           <td style={{ textAlign: "right" }}>
-                            <Link
+                            <button
                               className="btn"
                               onClick={() => {
                                 if (queue.find((y) => y.name === z.name)) {
@@ -60,11 +60,12 @@ export default function SingerList({ singers }) {
                                     },
                                   });
                                 }
+
+                                history.push("/albums");
                               }}
-                              to="/albums"
                             >
                               Queue
-                            </Link>
+                            </button>
                           </td>
                         </tr>
                       );
