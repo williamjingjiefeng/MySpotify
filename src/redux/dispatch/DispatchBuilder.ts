@@ -70,6 +70,10 @@ export class DispatchBuilder<TState> {
         const combinedReducer: Reducer<TState, ActionWithPayload<any>> = (state: TState, action: ActionWithPayload<any>) => {
 
             const reducerForThisAction = this.actionReducers.get(action.type);
+
+            // skip actions from a different state slice
+            if (!reducerForThisAction) return state;
+
             const newState = reducerForThisAction(state, action);
             return newState;
         }
