@@ -12,7 +12,10 @@ export class DispatchBuilder<TState> {
      * This helps generate unique action types across the application.
      * The name of the state slice is a good suggestion.
      */
-    actionNamePrefix: string;
+    private actionNamePrefix: string;
+
+    /** The default value of this slice of the state */
+    private defaultState: TState;
 
     /**
      * All the actions that have been created by this builder. Used to make a reducer.
@@ -20,10 +23,11 @@ export class DispatchBuilder<TState> {
      * The value is a reducer function that supports that particular action.
      * This can't be strongly typed, because each action potentially has a different payload type.
      */
-    actionReducers: Map<string, Reducer<TState, ActionWithPayload<any>>>;
+    private actionReducers: Map<string, Reducer<TState, ActionWithPayload<any>>>;
 
-    constructor(actionNamePrefix: string) {
+    constructor(actionNamePrefix: string, defaultState: TState) {
         this.actionNamePrefix = actionNamePrefix;
+        this.defaultState = defaultState;
         this.actionReducers = new Map<string, Reducer<TState, ActionWithPayload<any>>>();
     }
 
@@ -37,10 +41,10 @@ export class DispatchBuilder<TState> {
         const actionType = `${this.actionNamePrefix} ${actionName}`;
 
         // full reducer for just this action
-        const fullReducer: Reducer<TState, ActionWithPayload<TPayload>> = (state: TState, action: ActionWithPayload<TPayload>) => {
+        const fullReducer: Reducer<TState, ActionWithPayload<TPayload>> = (state: TState | undefined, action: ActionWithPayload<TPayload>) => {
 
             const payload = action.Payload;
-            const newState = reducer(state, payload);
+            const newState = reducer(state ?? this.defaultState, payload);
             return newState;
         }
 
@@ -65,14 +69,14 @@ export class DispatchBuilder<TState> {
     /**
      * Makes a reducer that supports all the actions that have been defined so far.
      */
-    MakeReducer(): Reducer<TState> {
+    MakeReducer(): Reducer<TState, ActionWithPayload<any>> {
 
-        const combinedReducer: Reducer<TState, ActionWithPayload<any>> = (state: TState, action: ActionWithPayload<any>) => {
+        const combinedReducer: Reducer<TState, ActionWithPayload<any>> = (state: TState | undefined, action: ActionWithPayload<any>) => {
 
             const reducerForThisAction = this.actionReducers.get(action.type);
 
             // skip actions from a different state slice
-            if (!reducerForThisAction) return state;
+            if (!reducerForThisAction) return state ?? this.defaultState;
 
             const newState = reducerForThisAction(state, action);
             return newState;
