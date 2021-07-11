@@ -1,18 +1,11 @@
-
-class SomethingElse {
-
-    public static y() {
-
-    }
-
-}
+import { PreferenceDispatcher } from "./Demo/PreferenceRedux";
 
 /**
  * Global access to Redux action dispatch.
  * There is one property per state slice.
  */
-export class Dispatch {
+export const Dispatch = {
 
-    public static x: SomethingElse = new SomethingElse();
-}
-
+    /** The user's preferences such as favourite colour. */
+    Preference: PreferenceDispatcher,
+};
