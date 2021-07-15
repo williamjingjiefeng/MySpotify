@@ -1,11 +1,6 @@
 import React, { useEffect } from "react";
-import { PreferenceDemo } from "../../redux/dispatch/Demo/PreferenceDemo";
 
 const AboutPage = () => {
-
-    useEffect(() => {
-        PreferenceDemo();
-    }, []);
 
     return (
         <div>

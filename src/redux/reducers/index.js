@@ -3,7 +3,7 @@ import songs from "./songReducer";
 import singers from "./singerReducer";
 import albums from "./albumReducer";
 import apiCallsInProgress from "./apiStatusReducer";
-import { PreferenceReducer } from "../dispatch/Demo/PreferenceRedux";
+import { PreferenceReducer } from "../dispatch/Songs/PreferenceRedux";
 
 const rootReducer = combineReducers({
   songs,

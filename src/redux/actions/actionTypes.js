@@ -5,6 +5,7 @@ export const LOAD_ALBUMS_SUCCESS = "LOAD_ALBUMS_SUCCESS";
 export const CREATE_SONG_SUCCESS = "CREATE_SONG_SUCCESS";
 export const UPDATE_SONG_SUCCESS = "UPDATE_SONG_SUCCESS";
 export const BEGIN_API_CALL = "BEGIN_API_CALL";
+export const END_API_CALL = "END_API_CALL";
 export const API_CALL_ERROR = "API_CALL_ERROR";
 
 // By convention, actions that end in "_SUCCESS" are assumed to have been the result of a completed

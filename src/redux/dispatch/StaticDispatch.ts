@@ -1,4 +1,4 @@
-import { PreferenceDispatcher } from "./Demo/PreferenceRedux";
+import { PreferenceDispatcher } from "./Songs/PreferenceRedux";
 
 /**
  * Global access to Redux action dispatch.

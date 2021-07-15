@@ -36,7 +36,7 @@ const songs = [
   },
   {
     id: 6,
-    title: "Ypu're The Place",
+    title: "You're The Place",
     youtubeId: "vv_bzipW_m0",
     singerId: 2,
     albumId: 5,
