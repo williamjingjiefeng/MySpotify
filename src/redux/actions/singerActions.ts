@@ -1,10 +1,10 @@
-import * as types from "./actionTypes";
 import * as singerApi from "../../api/singerApi";
-import { Dispatch } from "../dispatch/StaticDispatch.ts";
+import { Dispatch } from "../dispatch/StaticDispatch";
+import { ISong } from "../dispatch/Songs/PreferenceState";
 
 export function loadSingers() {
-    return function (dispatch) {
-        Dispatch.Preference.BeginApiCall();
+    return function (dispatch: React.Dispatch<ISong[]>) {
+        Dispatch.Preference.BeginApiCall(null);
         return singerApi
             .getSingers()
             .then(singers => {
@@ -14,7 +14,7 @@ export function loadSingers() {
                 throw error;
             })
             .finally(() => {
-                Dispatch.Preference.EndApiCall();
-            })
+                Dispatch.Preference.EndApiCall(null);
+            });
     };
 }

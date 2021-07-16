@@ -10,7 +10,7 @@ const rootReducer = combineReducers({
   singers,
   albums,
   apiCallsInProgress,
-  Preference: PreferenceReducer,
+  Preference: PreferenceReducer
 });
 
 export default rootReducer;

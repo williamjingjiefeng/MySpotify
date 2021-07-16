@@ -7,27 +7,27 @@ export interface PreferenceState {
 
     Albums: IAlbum[];
 
-    ApiCallsInProgress: number
+    ApiCallsInProgress: number;
 }
 
 export interface ISong {
     id: number;
     title: string;
     youtubeId: string;
-    singerId: number
-    albumId: number
+    singerId: number;
+    albumId: number;
 }
 
 export interface ISinger {
     id: number;
     name: string;
-    youtubeId: string
+    youtubeId: string;
 }
 
 export interface IAlbum {
     id: number;
     singerId: string;
-    name: string
+    name: string;
 }
 
 /** Default value of the Preference slice. */

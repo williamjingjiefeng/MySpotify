@@ -5,5 +5,5 @@ export default {
   singers: [],
   albums: [],
   apiCallsInProgress: 0,
-  Preference: DefaultPreference,
+  Preference: DefaultPreference
 };
