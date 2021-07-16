@@ -1,4 +1,4 @@
-import { DefaultPreference } from "../dispatch/Songs/PreferenceState";
+import { DefaultPreference } from "../dispatch/Music/PreferenceState";
 
 export default {
   songs: [],

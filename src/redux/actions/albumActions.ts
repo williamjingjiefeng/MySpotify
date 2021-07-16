@@ -1,9 +1,9 @@
 import * as albumApi from "../../api/albumApi";
 import { Dispatch } from "../dispatch/StaticDispatch";
-import { ISong } from "../dispatch/Songs/PreferenceState";
+import { IAlbum } from "../dispatch/Music/PreferenceState";
 
 export function loadAlbums() {
-    return function (dispatch: React.Dispatch<ISong[]>) {
+    return function (dispatch: React.Dispatch<IAlbum[]>) {
         Dispatch.Preference.BeginApiCall(null);
         return albumApi
             .getAlbums()

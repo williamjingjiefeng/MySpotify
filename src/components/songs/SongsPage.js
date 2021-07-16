@@ -29,24 +29,24 @@ class SongsPage extends React.Component {
                 {this.props.loading ? (
                     <Spinner />
                 ) : (
-                        <>
-                            <button
-                                className="btn btn-primary add-song"
-                                onClick={() => this.setState({ redirectToAddSongPage: true })}
-                            >
-                                Add Song
+                    <>
+                        <button
+                            className="btn btn-primary add-song"
+                            onClick={() => this.setState({ redirectToAddSongPage: true })}
+                        >
+                            Add Song
                             </button>
 
-                            <Fetch songs={this.props.songs} singers={this.props.singers} albums={this.props.albums}>
-                                {() => {
-                                    return <SongList
-                                        onDeleteClick={this.handleDeleteSong}
-                                        songs={this.props.songs}
-                                    />
-                                }}
-                            </Fetch>
-                        </>
-                    )
+                        <Fetch songs={this.props.songs} singers={this.props.singers} albums={this.props.albums}>
+                            {() => {
+                                return <SongList
+                                    onDeleteClick={this.handleDeleteSong}
+                                    songs={this.props.songs}
+                                />
+                            }}
+                        </Fetch>
+                    </>
+                )
                 }
             </>
         );
@@ -57,7 +57,7 @@ SongsPage.propTypes = {
     singers: PropTypes.array.isRequired,
     songs: PropTypes.array.isRequired,
     albums: PropTypes.array.isRequired,
-    loading: PropTypes.bool.isRequired,
+    loading: PropTypes.bool.isRequired
 };
 
 function mapStateToProps(state) {
@@ -69,7 +69,7 @@ function mapStateToProps(state) {
                     return {
                         ...song,
                         singerName: state.Preference.Singers.find((a) => a.id === song.singerId).name,
-                        albumName: state.Preference.Albums.find((z) => z.id === song.albumId).name,
+                        albumName: state.Preference.Albums.find((z) => z.id === song.albumId).name
                     };
                 }),
         singers: state.Preference.Singers,

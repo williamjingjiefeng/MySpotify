@@ -1,7 +1,7 @@
 import * as songApi from "../../api/songApi";
-import { ISong } from "../dispatch/Songs/PreferenceState";
+import { ISong } from "../dispatch/Music/PreferenceState";
 import { Dispatch } from "../dispatch/StaticDispatch";
-import { PreferenceState } from "../dispatch/Songs/PreferenceState";
+import { PreferenceState } from "../dispatch/Music/PreferenceState";
 
 export function loadSongs() {
     return function (dispatch: React.Dispatch<ISong[]>) {

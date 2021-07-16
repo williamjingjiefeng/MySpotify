@@ -79,8 +79,7 @@ ManageSongPage.propTypes = {
     singers: PropTypes.array.isRequired,
     songs: PropTypes.array.isRequired,
     albums: PropTypes.array.isRequired,
-    actions: PropTypes.object.isRequired,
-    history: PropTypes.object.isRequired,
+    history: PropTypes.object.isRequired
 };
 
 export function getSongByYoutubeId(songs, youtubeId) {
