@@ -6,14 +6,10 @@ import Spinner from "../common/Spinner";
 import { toast } from "react-toastify";
 import { Fetch } from "../../services/useFetch"
 import * as actions from "../../redux/actions/songActions";
-import { PreferenceState, ISong, IAlbum } from "../../redux/dispatch/Music/PreferenceState";
+import { ISong, IAlbum, IRootState } from "../../redux/dispatch/Music/PreferenceState";
 
 interface IState {
     redirectToAddSongPage: boolean
-}
-
-interface IRootState {
-    Preference: PreferenceState
 }
 
 function mapStateToProps(state: IRootState) {
@@ -45,7 +41,7 @@ class SongsPage extends React.Component<ReduxType, IState> {
     handleDeleteSong = async (song: ISong) => {
         toast.success("Song deleted");
         try {
-            await actions.deleteSong(song)(null);
+            await actions.deleteSong(song)();
         } catch (error) {
             toast.error("Delete failed. " + error.message, { autoClose: false });
         }

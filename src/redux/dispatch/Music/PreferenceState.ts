@@ -1,3 +1,14 @@
+export interface IRootState {
+    Preference: PreferenceState
+}
+
+export interface IErrors {
+    title?: string;
+    singer?: string;
+    youtubeId?: string;
+    album?: string;
+    onSave?: string;
+}
 
 export interface PreferenceState {
 
@@ -16,6 +27,8 @@ export interface ISong {
     youtubeId: string;
     singerId: number;
     albumId: number;
+    singerName: string | undefined;
+    albumName: string | undefined;
 }
 
 export interface ISinger {

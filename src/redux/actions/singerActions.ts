@@ -1,9 +1,9 @@
 import * as singerApi from "../../api/singerApi";
 import { Dispatch } from "../dispatch/StaticDispatch";
-import { ISinger} from "../dispatch/Music/PreferenceState";
+import { ISinger } from "../dispatch/Music/PreferenceState";
 
 export function loadSingers() {
-    return function (dispatch: React.Dispatch<ISinger[]> | null) {
+    return function (dispatch?: React.Dispatch<ISinger[]>) {
         Dispatch.Preference.BeginApiCall(null);
         return singerApi
             .getSingers()

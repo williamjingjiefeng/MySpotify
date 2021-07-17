@@ -1,27 +1,36 @@
 import React, { useState } from "react";
 import { connect } from "react-redux";
-import PropTypes from "prop-types";
 import SongForm from "./SongForm";
 import { newSong } from "../../../tools/mockMusics";
 import Spinner from "../common/Spinner";
 import { toast } from "react-toastify";
 import useFetch from "../../services/useFetch";
 import * as actions from "../../redux/actions/songActions";
+import { ISong, ISinger, IAlbum, IRootState, IErrors } from "../../redux/dispatch/Music/PreferenceState";
+import { RouteComponentProps } from 'react-router-dom';
 
-export function ManageSongPage({
-    songs,
-    singers,
-    albums,
-    history,
-    ...props
-}) {
+interface IHistory {
+    push: (route: string) => {}
+}
+
+interface Props {
+    songs: ISong[];
+    song: ISong;
+    singers: ISinger[];
+    albums: IAlbum[];
+    history: IHistory;
+}
+
+export const ManageSongPage = (props: Props) => {
     const [song, setSong] = useState({ ...props.song });
     const [errors, setErrors] = useState({});
     const [saving, setSaving] = useState(false);
 
+    const { songs, singers, albums, history } = props;
+
     useFetch(songs, singers, albums, props.song, setSong);
 
-    function handleChange(event) {
+    const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
         const { name, value } = event.target;
         setSong((prevSong) => ({
             ...prevSong,
@@ -30,9 +39,9 @@ export function ManageSongPage({
         }));
     }
 
-    function formIsValid() {
+    const formIsValid = () => {
         const { title, singerId, albumId, youtubeId } = song;
-        const errors = {};
+        const errors: IErrors = {};
 
         if (!title) errors.title = "Title is required.";
         if (!singerId) errors.singer = "Singer is required";
@@ -44,9 +53,12 @@ export function ManageSongPage({
         return Object.keys(errors).length === 0;
     }
 
-    function handleSave(event) {
+    const handleSave = (event: React.FormEvent<HTMLFormElement>) => {
         event.preventDefault();
-        if (!formIsValid()) return;
+        if (!formIsValid()) {
+            return;
+        }
+
         setSaving(true);
         actions.saveSong(song)()
             .then(() => {
@@ -57,36 +69,31 @@ export function ManageSongPage({
                 setSaving(false);
                 setErrors({ onSave: error.message });
             });
-    }
+    };
 
     return singers.length === 0 || songs.length === 0 ? (
         <Spinner />
     ) : (
-            <SongForm
-                song={song}
-                errors={errors}
-                singers={singers}
-                albums={albums}
-                onChange={handleChange}
-                onSave={handleSave}
-                saving={saving}
-            />
-        );
+        <SongForm
+            song={song}
+            errors={errors}
+            singers={singers}
+            albums={albums}
+            onChange={handleChange}
+            onSave={handleSave}
+            saving={saving}
+        />
+    );
 }
 
-ManageSongPage.propTypes = {
-    song: PropTypes.object.isRequired,
-    singers: PropTypes.array.isRequired,
-    songs: PropTypes.array.isRequired,
-    albums: PropTypes.array.isRequired,
-    history: PropTypes.object.isRequired
-};
-
-export function getSongByYoutubeId(songs, youtubeId) {
-    return songs.find((song) => song.youtubeId === youtubeId) || null;
+export function getSongByYoutubeId(songs: ISong[], youtubeId: string) {
+    return songs.find((song: ISong) => song.youtubeId === youtubeId) || null;
 }
 
-function mapStateToProps(state, ownProps) {
+interface OwnProps extends RouteComponentProps<any> {
+}
+
+function mapStateToProps(state: IRootState, ownProps: OwnProps) {
     const youtubeId = ownProps.match.params.youtubeId;
     const song =
         youtubeId && state.Preference.Songs.length > 0

@@ -13,7 +13,7 @@ export default function useFetch(songs: ISong[], singers: ISinger[], albums: IAl
 
         if (songs.length === 0 && isLoadingSongs.current === false) {
             isLoadingSongs.current = true;
-            songActions.loadSongs()(null).catch((error) => {
+            songActions.loadSongs()().catch((error) => {
                 alert("Loading songs failed: " + error);
             }).finally(() => {
                 isLoadingSongs.current = false;
@@ -27,7 +27,7 @@ export default function useFetch(songs: ISong[], singers: ISinger[], albums: IAl
 
         if (singers.length === 0 && isLoadingSingers.current === false) {
             isLoadingSingers.current = true;
-            singerActions.loadSingers()(null).catch((error) => {
+            singerActions.loadSingers()().catch((error) => {
                 alert("Loading singers failed: " + error);
             }).finally(() => {
                 isLoadingSingers.current = false;
@@ -36,7 +36,7 @@ export default function useFetch(songs: ISong[], singers: ISinger[], albums: IAl
 
         if (albums.length === 0 && isLoadingAlbums.current === false) {
             isLoadingAlbums.current = true;
-            albumActions.loadAlbums()(null).catch((error) => {
+            albumActions.loadAlbums()().catch((error) => {
                 alert("Loading albums failed: " + error);
             }).finally(() => {
                 isLoadingAlbums.current = false;
