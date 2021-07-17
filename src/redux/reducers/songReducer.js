@@ -1,7 +1,7 @@
 import * as types from "../actions/actionTypes";
 import initialState from "./initialState";
 
-export default function songReducer(state = initialState.songs, action) {
+export default function songReducer(state = initialState.Preference.Songs, action) {
   switch (action.type) {
     case types.CREATE_SONG_SUCCESS:
       return [...state, { ...action.song }];

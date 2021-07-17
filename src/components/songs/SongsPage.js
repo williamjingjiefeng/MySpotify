@@ -3,6 +3,7 @@ import { connect } from "react-redux";
 import PropTypes from "prop-types";
 import SongList from "./SongList";
 import { Redirect } from "react-router-dom";
+import Spinner from "../common/Spinner";
 import { toast } from "react-toastify";
 import { Fetch } from "../../services/useFetch"
 import * as actions from "../../redux/actions/songActions";
@@ -74,7 +75,7 @@ function mapStateToProps(state) {
                 }),
         singers: state.Preference.Singers,
         albums: state.Preference.Albums,
-        loading: state.Preference.apiCallsInProgress > 0
+        loading: state.Preference.ApiCallsInProgress > 0
     };
 }
 
