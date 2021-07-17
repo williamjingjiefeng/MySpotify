@@ -45,7 +45,7 @@ class SongsPage extends React.Component<ReduxType, IState> {
     handleDeleteSong = async (song: ISong) => {
         toast.success("Song deleted");
         try {
-            await actions.deleteSong(song);
+            await actions.deleteSong(song)(null);
         } catch (error) {
             toast.error("Delete failed. " + error.message, { autoClose: false });
         }

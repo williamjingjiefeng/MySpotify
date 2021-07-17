@@ -22,7 +22,7 @@ export function loadSongs() {
 
 export function saveSong(song: ISong) {
     //eslint-disable-next-line no-unused-vars
-    return function (dispatch: React.Dispatch<ISong>, getState: ()=> PreferenceState) {
+    return function (dispatch: React.Dispatch<ISong>, getState: () => PreferenceState) {
         Dispatch.Preference.BeginApiCall(null);
         return songApi
             .saveSong(song)
@@ -41,7 +41,7 @@ export function saveSong(song: ISong) {
 }
 
 export function deleteSong(song: ISong) {
-    return function (dispatch: React.Dispatch<ISong>) {
+    return function (dispatch: React.Dispatch<ISong> | null) {
         // Doing optimistic delete, so not dispatching begin/end api call
         // actions, or apiCallError action since we're not showing the loading status for this.
         Dispatch.Preference.DeleteSong(song);
