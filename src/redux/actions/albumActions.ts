@@ -3,7 +3,7 @@ import { Dispatch } from "../dispatch/StaticDispatch";
 import { IAlbum } from "../dispatch/Music/PreferenceState";
 
 export function loadAlbums() {
-    return function (dispatch: React.Dispatch<IAlbum[]>) {
+    return function (dispatch: React.Dispatch<IAlbum[]> | null) {
         Dispatch.Preference.BeginApiCall(null);
         return albumApi
             .getAlbums()

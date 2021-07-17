@@ -1,22 +1,51 @@
 import React from "react";
 import { connect } from "react-redux";
-import PropTypes from "prop-types";
 import SongList from "./SongList";
 import { Redirect } from "react-router-dom";
 import Spinner from "../common/Spinner";
 import { toast } from "react-toastify";
 import { Fetch } from "../../services/useFetch"
 import * as actions from "../../redux/actions/songActions";
+import { PreferenceState, ISong, IAlbum } from "../../redux/dispatch/Music/PreferenceState";
 
-class SongsPage extends React.Component {
+interface IState {
+    redirectToAddSongPage: boolean
+}
+
+interface IRootState {
+    Preference: PreferenceState
+}
+
+function mapStateToProps(state: IRootState) {
+    const { Singers, Albums, ApiCallsInProgress } = state.Preference;
+    return {
+        songs:
+            Singers.length === 0 || Albums.length === 0
+                ? []
+                : state.Preference.Songs.map((song: ISong) => {
+                    return {
+                        ...song,
+                        singerName: Singers.find((a) => a.id === song.singerId)?.name,
+                        albumName: Albums.find((z: IAlbum) => z.id === song.albumId)?.name
+                    };
+                }),
+        singers: Singers,
+        albums: Albums,
+        loading: ApiCallsInProgress > 0
+    };
+}
+
+type ReduxType = ReturnType<typeof mapStateToProps>;
+
+class SongsPage extends React.Component<ReduxType, IState> {
     state = {
         redirectToAddSongPage: false
     };
 
-    handleDeleteSong = async (song) => {
+    handleDeleteSong = async (song: ISong) => {
         toast.success("Song deleted");
         try {
-            await actions.deleteSong(song)();
+            await actions.deleteSong(song);
         } catch (error) {
             toast.error("Delete failed. " + error.message, { autoClose: false });
         }
@@ -38,7 +67,7 @@ class SongsPage extends React.Component {
                             Add Song
                             </button>
 
-                        <Fetch songs={this.props.songs} singers={this.props.singers} albums={this.props.albums}>
+                        <Fetch songs={this.props.songs} singers={this.props.singers} albums={this.props.albums} actions={null} song={null}>
                             {() => {
                                 return <SongList
                                     onDeleteClick={this.handleDeleteSong}
@@ -52,31 +81,6 @@ class SongsPage extends React.Component {
             </>
         );
     }
-}
-
-SongsPage.propTypes = {
-    singers: PropTypes.array.isRequired,
-    songs: PropTypes.array.isRequired,
-    albums: PropTypes.array.isRequired,
-    loading: PropTypes.bool.isRequired
-};
-
-function mapStateToProps(state) {
-    return {
-        songs:
-            state.Preference.Singers.length === 0 || state.Preference.Albums.length === 0
-                ? []
-                : state.Preference.Songs.map((song) => {
-                    return {
-                        ...song,
-                        singerName: state.Preference.Singers.find((a) => a.id === song.singerId).name,
-                        albumName: state.Preference.Albums.find((z) => z.id === song.albumId).name
-                    };
-                }),
-        singers: state.Preference.Singers,
-        albums: state.Preference.Albums,
-        loading: state.Preference.ApiCallsInProgress > 0
-    };
 }
 
 export default connect(mapStateToProps)(SongsPage);

@@ -3,7 +3,7 @@ import { Dispatch } from "../dispatch/StaticDispatch";
 import { ISinger} from "../dispatch/Music/PreferenceState";
 
 export function loadSingers() {
-    return function (dispatch: React.Dispatch<ISinger[]>) {
+    return function (dispatch: React.Dispatch<ISinger[]> | null) {
         Dispatch.Preference.BeginApiCall(null);
         return singerApi
             .getSingers()

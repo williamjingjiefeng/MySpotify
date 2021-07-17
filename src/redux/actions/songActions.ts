@@ -4,7 +4,7 @@ import { Dispatch } from "../dispatch/StaticDispatch";
 import { PreferenceState } from "../dispatch/Music/PreferenceState";
 
 export function loadSongs() {
-    return function (dispatch: React.Dispatch<ISong[]>) {
+    return function (dispatch: React.Dispatch<ISong[]> | null) {
         Dispatch.Preference.BeginApiCall(null);
         return songApi
             .getSongs()
