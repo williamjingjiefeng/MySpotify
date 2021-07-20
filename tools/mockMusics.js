@@ -82,11 +82,11 @@ const albums = [
 ];
 
 const newSong = {
-  id: null,
+  id: 0,
   title: "",
-  singerId: null,
+  singerId: 0,
   youtubeId: "",
-  albumId: null,
+  albumId: 0,
 };
 
 // Using CommonJS style export so we can consume via Node (without using Babel-node)
