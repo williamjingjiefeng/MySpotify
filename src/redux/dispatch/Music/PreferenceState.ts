@@ -27,8 +27,8 @@ export interface ISong {
     youtubeId: string;
     singerId: number;
     albumId: number;
-    singerName: string | undefined;
-    albumName: string | undefined;
+    singerName?: string;
+    albumName?: string;
 }
 
 export interface ISinger {

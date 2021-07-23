@@ -6,13 +6,20 @@ import Spinner from "../common/Spinner";
 import { toast } from "react-toastify";
 import { Fetch } from "../../services/useFetch"
 import * as actions from "../../redux/actions/songActions";
-import { ISong, IAlbum, IRootState } from "../../redux/dispatch/Music/PreferenceState";
+import { ISong, IAlbum, IRootState, ISinger } from "../../redux/dispatch/Music/PreferenceState";
 
 interface IState {
     redirectToAddSongPage: boolean
 }
 
-function mapStateToProps(state: IRootState) {
+interface MyPropsFromStore {
+    songs: ISong[];
+    singers: ISinger[];
+    albums: IAlbum[];
+    loading: boolean;
+}
+
+function mapStateToProps(state: IRootState): MyPropsFromStore {
     const { Singers, Albums, ApiCallsInProgress } = state.Preference;
     return {
         songs:
@@ -31,9 +38,7 @@ function mapStateToProps(state: IRootState) {
     };
 }
 
-type ReduxType = ReturnType<typeof mapStateToProps>;
-
-class SongsPage extends React.Component<ReduxType, IState> {
+class SongsPage extends React.Component<MyPropsFromStore, IState> {
     state = {
         redirectToAddSongPage: false
     };

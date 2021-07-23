@@ -13,15 +13,20 @@ interface IHistory {
     push: (route: string) => {}
 }
 
-interface Props {
+interface MyPropsFromStore {
     songs: ISong[];
     song: ISong;
     singers: ISinger[];
     albums: IAlbum[];
+}
+
+interface MyPropsFromJsx {
     history: IHistory;
 }
 
-export const ManageSongPage = (props: Props) => {
+type AllMyProps = MyPropsFromStore & MyPropsFromJsx;
+
+export const ManageSongPage = (props: AllMyProps) => {
     const [song, setSong] = useState({ ...props.song });
     const [errors, setErrors] = useState({});
     const [saving, setSaving] = useState(false);
@@ -93,11 +98,11 @@ export function getSongByYoutubeId(songs: ISong[], youtubeId: string) {
 interface OwnProps extends RouteComponentProps<any> {
 }
 
-function mapStateToProps(state: IRootState, ownProps: OwnProps) {
+function mapStateToProps(state: IRootState, ownProps: OwnProps): MyPropsFromStore {
     const youtubeId = ownProps.match.params.youtubeId;
     const song =
         youtubeId && state.Preference.Songs.length > 0
-            ? getSongByYoutubeId(state.Preference.Songs, youtubeId)
+            ? getSongByYoutubeId(state.Preference.Songs, youtubeId) ?? newSong
             : newSong;
     return {
         song,
