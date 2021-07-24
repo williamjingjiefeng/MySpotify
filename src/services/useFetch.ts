@@ -2,7 +2,9 @@ import { useEffect, useRef } from "react";
 import * as songActions from "../redux/actions/songActions";
 import * as singerActions from "../redux/actions/singerActions";
 import * as albumActions from "../redux/actions/albumActions";
-import { ISong, ISinger, IAlbum } from "../redux/dispatch/Music/PreferenceState";
+import { IAlbum } from "../redux/dispatch/Album/Album";
+import { ISong } from "../redux/dispatch/Song/Song";
+import { ISinger } from "../redux/dispatch/Singer/Singer";
 
 export default function useFetch(songs: ISong[], singers: ISinger[], albums: IAlbum[], song: ISong | null, setSong: React.Dispatch<any> | null): void {
     const isLoadingSongs = useRef(false);

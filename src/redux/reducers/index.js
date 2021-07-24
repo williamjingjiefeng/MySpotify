@@ -1,16 +1,14 @@
 import { combineReducers } from "redux";
-import songs from "./songReducer";
-import singers from "./singerReducer";
-import albums from "./albumReducer";
-import apiCallsInProgress from "./apiStatusReducer";
-import { PreferenceReducer } from "../dispatch/Music/PreferenceRedux";
+import apiCallStatusReducer from "./apiStatusReducer";
+import { SongReducer } from "../dispatch/Song/SongRedux";
+import { SingerReducer } from "../dispatch/Singer/SingerRedux";
+import { AlbumReducer } from "../dispatch/Album/AlbumRedux";
 
 const rootReducer = combineReducers({
-    songs,
-    singers,
-    albums,
-    apiCallsInProgress,
-    Preference: PreferenceReducer
+    Song: SongReducer,
+    Singer: SingerReducer,
+    Album: AlbumReducer,
+    ApiCallsInProgress: apiCallStatusReducer
 });
 
 export default rootReducer;

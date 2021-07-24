@@ -1,7 +1,10 @@
 import React from "react";
 import TextInput from "../common/TextInput";
 import SelectInput from "../common/SelectInput";
-import { ISong, ISinger, IAlbum, IErrors } from "../../redux/dispatch/Music/PreferenceState";
+import { IErrors } from "../../redux/dispatch/ErrorState";
+import { ISong } from "../../redux/dispatch/Song/Song";
+import { ISinger } from "../../redux/dispatch/Singer/Singer";
+import { IAlbum } from "../../redux/dispatch/Album/Album";
 
 interface ISongForm {
     song: ISong;

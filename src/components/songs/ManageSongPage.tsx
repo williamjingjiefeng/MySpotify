@@ -6,8 +6,12 @@ import Spinner from "../common/Spinner";
 import { toast } from "react-toastify";
 import useFetch from "../../services/useFetch";
 import * as actions from "../../redux/actions/songActions";
-import { ISong, ISinger, IAlbum, IRootState, IErrors } from "../../redux/dispatch/Music/PreferenceState";
+import { IErrors } from "../../redux/dispatch/ErrorState";
+import { ISong } from "../../redux/dispatch/Song/Song";
 import { RouteComponentProps } from 'react-router-dom';
+import { ISinger } from "../../redux/dispatch/Singer/Singer";
+import { IAlbum } from "../../redux/dispatch/Album/Album";
+import { IAppState } from "../../redux/dispatch/AppState";
 
 interface IHistory {
     push: (route: string) => {}
@@ -98,17 +102,17 @@ export function getSongByYoutubeId(songs: ISong[], youtubeId: string) {
 interface OwnProps extends RouteComponentProps<any> {
 }
 
-function mapStateToProps(state: IRootState, ownProps: OwnProps): MyPropsFromStore {
+function mapStateToProps(state: IAppState, ownProps: OwnProps): MyPropsFromStore {
     const youtubeId = ownProps.match.params.youtubeId;
     const song =
-        youtubeId && state.Preference.Songs.length > 0
-            ? getSongByYoutubeId(state.Preference.Songs, youtubeId) ?? newSong
+        youtubeId && state.Song.Songs.length > 0
+            ? getSongByYoutubeId(state.Song.Songs, youtubeId) ?? newSong
             : newSong;
     return {
         song,
-        songs: state.Preference.Songs,
-        singers: state.Preference.Singers,
-        albums: state.Preference.Albums
+        songs: state.Song.Songs,
+        singers: state.Singer.Singers,
+        albums: state.Album.Albums
     };
 }
 

@@ -1,6 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { ISong } from "../../redux/dispatch/Music/PreferenceState";
+import { ISong } from "../../redux/dispatch/Song/Song";
 
 interface ISongList {
     songs: ISong[];
