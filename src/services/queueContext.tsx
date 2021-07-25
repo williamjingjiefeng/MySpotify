@@ -1,20 +1,19 @@
 import React, { useReducer, useEffect, useContext } from "react";
 import queueReducer from "./queueReducer";
 import { default as themes } from "../theme/schema.json";
-import { getFromLocalStorage, setToLocalStorage } from "../utils/storage.js";
-import PropTypes from "prop-types";
-import iQueueItem from "./iQueueItem";
+import { getFromLocalStorage, setToLocalStorage } from "../utils/storage";
+import { IQueueItem } from "./iQueueItem";
 
 setToLocalStorage("all-themes", themes);
 
 export const QueueContext = React.createContext<{
-    queue: iQueueItem[], dispatch: React.Dispatch<{
+    queue: IQueueItem[], dispatch: React.Dispatch<{
         type: string;
-        queueItem: iQueueItem;
+        queueItem: IQueueItem;
     }>
 } | null>(null);
 
-let initialQueue: iQueueItem[] = [];
+let initialQueue: IQueueItem[] = [];
 try {
     const queue = getFromLocalStorage("queue");
     initialQueue = queue != null ? queue : [];
@@ -41,11 +40,6 @@ export function QueueProvider(props: iProps) {
             {props.children}
         </QueueContext.Provider>
     );
-}
-
-QueueProvider.propTypes =
-{
-    children: PropTypes.object.isRequired
 }
 
 export function useQueue() {

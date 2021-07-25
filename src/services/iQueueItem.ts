@@ -1,4 +1,4 @@
-export default interface iQueueItem {
+export interface IQueueItem {
     name: string;
     singerName: string;
 }
