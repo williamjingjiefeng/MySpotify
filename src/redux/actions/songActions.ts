@@ -2,10 +2,15 @@ import * as songApi from "../../api/songApi";
 import { ISong } from "../dispatch/Song/Song";
 import { Dispatch } from "../dispatch/StaticDispatch";
 import { SongState } from "../dispatch/Song/SongState";
+import { beginApiCall, endApiCall } from "./apiStatusActions";
 
 export function loadSongs() {
     return function (dispatch?: React.Dispatch<any>) {
-        Dispatch.ApiCall.BeginApiCall(null);
+        if (dispatch) {
+            dispatch(beginApiCall());
+        } else {
+            Dispatch.ApiCall.BeginApiCall(null);
+        }
         return songApi
             .getSongs()
             .then(songs => {
@@ -15,7 +20,11 @@ export function loadSongs() {
                 throw error;
             })
             .finally(() => {
-                Dispatch.ApiCall.EndApiCall(null);
+                if (dispatch) {
+                    dispatch(endApiCall());
+                } else {
+                    Dispatch.ApiCall.EndApiCall(null);
+                }
             });
     };
 }
