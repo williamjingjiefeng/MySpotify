@@ -2,14 +2,10 @@ import * as songApi from "../../api/songApi";
 import { ISong } from "../dispatch/Song/Song";
 import { Dispatch } from "../dispatch/StaticDispatch";
 import { SongState } from "../dispatch/Song/SongState";
-import { beginApiCall, apiCallError } from "./apiStatusActions";
 
 export function loadSongs() {
     return function (dispatch?: React.Dispatch<any>) {
-        if (dispatch) {
-            dispatch(beginApiCall());
-        }
-
+        Dispatch.ApiCall.BeginApiCall(null);
         return songApi
             .getSongs()
             .then(songs => {
@@ -19,7 +15,7 @@ export function loadSongs() {
                 throw error;
             })
             .finally(() => {
-                //Dispatch.Preference.EndApiCall(null);
+                Dispatch.ApiCall.EndApiCall(null);
             });
     };
 }
@@ -27,7 +23,7 @@ export function loadSongs() {
 export function saveSong(song: ISong) {
     //eslint-disable-next-line no-unused-vars
     return function (dispatch?: React.Dispatch<ISong>, getState?: () => SongState) {
-        //Dispatch.Preference.BeginApiCall(null);
+        Dispatch.ApiCall.BeginApiCall(null);
         return songApi
             .saveSong(song)
             .then(savedSong => {
@@ -39,7 +35,7 @@ export function saveSong(song: ISong) {
                 throw error;
             })
             .finally(() => {
-                //Dispatch.Preference.EndApiCall(null);
+                Dispatch.ApiCall.EndApiCall(null);
             });
     };
 }

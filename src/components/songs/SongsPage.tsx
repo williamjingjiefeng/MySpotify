@@ -9,7 +9,7 @@ import * as actions from "../../redux/actions/songActions";
 import { ISong } from "../../redux/dispatch/Song/Song";
 import { ISinger } from "../../redux/dispatch/Singer/Singer";
 import { IAlbum } from "../../redux/dispatch/Album/Album";
-import { IAppState } from "../../redux/dispatch/AppState";
+import { IAppState } from "../../redux/AppState";
 
 interface IState {
     redirectToAddSongPage: boolean
@@ -25,6 +25,7 @@ interface MyPropsFromStore {
 function mapStateToProps(state: IAppState): MyPropsFromStore {
     const { Albums } = state.Album;
     const { Singers } = state.Singer;
+    const { ApiCallInProgress } = state.ApiCall;
 
     return {
         songs:
@@ -39,7 +40,7 @@ function mapStateToProps(state: IAppState): MyPropsFromStore {
                 }),
         singers: Singers,
         albums: Albums,
-        loading: state.ApiCallsInProgress > 0
+        loading: ApiCallInProgress > 0
     };
 }
 

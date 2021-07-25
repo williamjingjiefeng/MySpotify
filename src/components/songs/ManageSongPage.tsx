@@ -6,12 +6,12 @@ import Spinner from "../common/Spinner";
 import { toast } from "react-toastify";
 import useFetch from "../../services/useFetch";
 import * as actions from "../../redux/actions/songActions";
-import { IErrors } from "../../redux/dispatch/ErrorState";
+import { IErrors } from "../../redux/ErrorState";
 import { ISong } from "../../redux/dispatch/Song/Song";
 import { RouteComponentProps } from 'react-router-dom';
 import { ISinger } from "../../redux/dispatch/Singer/Singer";
 import { IAlbum } from "../../redux/dispatch/Album/Album";
-import { IAppState } from "../../redux/dispatch/AppState";
+import { IAppState } from "../../redux/AppState";
 
 interface IHistory {
     push: (route: string) => {}

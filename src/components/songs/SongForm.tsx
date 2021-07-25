@@ -1,7 +1,7 @@
 import React from "react";
 import TextInput from "../common/TextInput";
 import SelectInput from "../common/SelectInput";
-import { IErrors } from "../../redux/dispatch/ErrorState";
+import { IErrors } from "../../redux/ErrorState";
 import { ISong } from "../../redux/dispatch/Song/Song";
 import { ISinger } from "../../redux/dispatch/Singer/Singer";
 import { IAlbum } from "../../redux/dispatch/Album/Album";

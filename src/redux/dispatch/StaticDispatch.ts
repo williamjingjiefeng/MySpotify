@@ -1,6 +1,7 @@
 import { SongDispatcher } from "./Song/SongRedux";
 import { SingerDispatcher } from "./Singer/SingerRedux";
 import { AlbumDispatcher } from "./Album/AlbumRedux";
+import { ApiCallDispatcher } from "./ApiCall/ApiCallRedux";
 
 /**
  * Global access to Redux action dispatch.
@@ -9,5 +10,6 @@ import { AlbumDispatcher } from "./Album/AlbumRedux";
 export const Dispatch = {
     Song: SongDispatcher,
     Singer: SingerDispatcher,
-    Album: AlbumDispatcher
+    Album: AlbumDispatcher,
+    ApiCall: ApiCallDispatcher
 };

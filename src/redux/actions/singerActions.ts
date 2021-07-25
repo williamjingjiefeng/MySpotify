@@ -4,7 +4,7 @@ import { ISinger } from "../dispatch/Singer/Singer";
 
 export function loadSingers() {
     return function (dispatch?: React.Dispatch<ISinger[]>) {
-        //Dispatch.Preference.BeginApiCall(null);
+        Dispatch.ApiCall.BeginApiCall(null);
         return singerApi
             .getSingers()
             .then(singers => {
@@ -14,7 +14,7 @@ export function loadSingers() {
                 throw error;
             })
             .finally(() => {
-                //Dispatch.Preference.EndApiCall(null);
+                Dispatch.ApiCall.EndApiCall(null);
             });
     };
 }
