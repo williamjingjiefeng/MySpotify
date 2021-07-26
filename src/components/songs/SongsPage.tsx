@@ -25,7 +25,7 @@ interface MyPropsFromStore {
 function mapStateToProps(state: IAppState): MyPropsFromStore {
     const { Albums } = state.Album;
     const { Singers } = state.Singer;
-    const { ApiCallInProgress } = state.ApiCall;
+    const { ApiCallInProgress } = state.UI;
 
     return {
         songs:

@@ -37,9 +37,15 @@ interface MyPropsFromStore {
 }
 
 interface MyPropsFromDispatch {
-    LoadSongs: () => (dispatch?: React.Dispatch<any> | undefined) => Promise<void>;
-    LoadSingers: () => (dispatch?: React.Dispatch<any> | undefined) => Promise<void>;
-    LoadAlbums: () => (dispatch?: React.Dispatch<any> | undefined) => Promise<void>;
+
+    // weird, causes JS compilation error
+    //LoadSongs: () => (dispatch?: React.Dispatch<any> | undefined) => Promise<void>;
+    //LoadSingers: () => (dispatch?: React.Dispatch<any> | undefined) => Promise<void>;
+    //LoadAlbums: () => (dispatch?: React.Dispatch<any> | undefined) => Promise<void>;
+
+    LoadSongs: () => void;
+    LoadSingers: () => void;
+    LoadAlbums: () => void;
 }
 
 function mapStateToProps(state: IAppState): MyPropsFromStore {

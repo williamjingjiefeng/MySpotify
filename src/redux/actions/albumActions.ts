@@ -4,7 +4,7 @@ import { IAlbum } from "../dispatch/Album/Album";
 
 export function loadAlbums() {
     return function (dispatch?: React.Dispatch<IAlbum[]>) {
-        Dispatch.ApiCall.BeginApiCall(null);
+        Dispatch.UI.BeginApiCall(null);
         return albumApi
             .getAlbums()
             .then(albums => {
@@ -14,7 +14,7 @@ export function loadAlbums() {
                 throw error;
             })
             .finally(() => {
-                Dispatch.ApiCall.EndApiCall(null);
+                Dispatch.UI.EndApiCall(null);
             });
     };
 }

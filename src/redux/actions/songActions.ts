@@ -9,7 +9,7 @@ export function loadSongs() {
         if (dispatch) {
             dispatch(beginApiCall());
         } else {
-            Dispatch.ApiCall.BeginApiCall(null);
+            Dispatch.UI.BeginApiCall(null);
         }
         return songApi
             .getSongs()
@@ -23,7 +23,7 @@ export function loadSongs() {
                 if (dispatch) {
                     dispatch(endApiCall());
                 } else {
-                    Dispatch.ApiCall.EndApiCall(null);
+                    Dispatch.UI.EndApiCall(null);
                 }
             });
     };
@@ -32,7 +32,7 @@ export function loadSongs() {
 export function saveSong(song: ISong) {
     //eslint-disable-next-line no-unused-vars
     return function (dispatch?: React.Dispatch<ISong>, getState?: () => SongState) {
-        Dispatch.ApiCall.BeginApiCall(null);
+        Dispatch.UI.BeginApiCall(null);
         return songApi
             .saveSong(song)
             .then(savedSong => {
@@ -44,7 +44,7 @@ export function saveSong(song: ISong) {
                 throw error;
             })
             .finally(() => {
-                Dispatch.ApiCall.EndApiCall(null);
+                Dispatch.UI.EndApiCall(null);
             });
     };
 }

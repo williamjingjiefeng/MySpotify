@@ -2,7 +2,7 @@ import * as types from "../actions/actionTypes";
 import { InitAppState } from "../initialState";
 import { Action } from "redux";
 
-export default function apiCallStatusReducer(state = InitAppState.ApiCall, action: Action<any>) {
+export default function apiCallStatusReducer(state = InitAppState.UI, action: Action<any>) {
     if (action.type === types.BEGIN_API_CALL) {
         return {
             ...state,
