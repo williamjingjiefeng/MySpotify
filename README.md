@@ -67,7 +67,7 @@
 | **Dependency**                  | **Use**                                                          |
 | ------------------------------- | ---------------------------------------------------------------- |
 | @babel/core                     | Transpiles modern JavaScript so it runs cross-browser            |
-| @types/react-redux": "^7.1.18   | Transpiles modern JavaScript so it runs cross-browser            |
+| @types/react-redux              | type definitions for react-redux from https://definitelytyped.org|
 | babel-eslint                    | Lint modern JavaScript via ESLint                                |
 | babel-loader                    | Add Babel support to Webpack                                     |
 | babel-preset-react-app          | Babel preset for working in React. Used by create-react-app too. |
