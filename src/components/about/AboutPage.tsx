@@ -24,6 +24,8 @@ const AboutPage = (props: MyPropsFromStore & MyPropsFromDispatch) => {
                 Typescript is deployed to render all queued albums related pages, so coexistence of Babel and Typescript loaders
                 is a feature of the entire application.<br /><br />
 
+                Helper class is provided to make action dispatchers (self-dispatching action creator) and also reducers with coexistence of Redux THUNK.<br /><br />
+
                 We have loaded {props.NumberOfSongs} songs from {props.NumberOfSingers} singers, with {props.NumberOfAlbums} albums in total.
             </p>
         </div>
