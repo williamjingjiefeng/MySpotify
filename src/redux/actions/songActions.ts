@@ -3,13 +3,14 @@ import { ISong } from "../dispatch/Song/Song";
 import { Dispatch } from "../dispatch/StaticDispatch";
 import { SongState } from "../dispatch/Song/SongState";
 import { beginApiCall, endApiCall } from "./apiStatusActions";
+import { DefaultUIState } from "../dispatch/UI/UIState";
 
 export function loadSongs() {
     return function (dispatch?: React.Dispatch<any>) {
         if (dispatch) {
             dispatch(beginApiCall());
         } else {
-            Dispatch.UI.BeginApiCall(null);
+            Dispatch.UI.BeginApiCall(DefaultUIState);
         }
         return songApi
             .getSongs()
@@ -23,7 +24,7 @@ export function loadSongs() {
                 if (dispatch) {
                     dispatch(endApiCall());
                 } else {
-                    Dispatch.UI.EndApiCall(null);
+                    Dispatch.UI.EndApiCall(DefaultUIState);
                 }
             });
     };
@@ -31,8 +32,12 @@ export function loadSongs() {
 
 export function saveSong(song: ISong) {
     //eslint-disable-next-line no-unused-vars
-    return function (dispatch?: React.Dispatch<ISong>, getState?: () => SongState) {
-        Dispatch.UI.BeginApiCall(null);
+    return function (dispatch?: React.Dispatch<any>, getState?: () => SongState) {
+        if (dispatch) {
+            dispatch(beginApiCall());
+        } else {
+            Dispatch.UI.BeginApiCall(DefaultUIState);
+        }
         return songApi
             .saveSong(song)
             .then(savedSong => {
@@ -44,7 +49,11 @@ export function saveSong(song: ISong) {
                 throw error;
             })
             .finally(() => {
-                Dispatch.UI.EndApiCall(null);
+                if (dispatch) {
+                    dispatch(endApiCall());
+                } else {
+                    Dispatch.UI.EndApiCall(DefaultUIState);
+                }
             });
     };
 }

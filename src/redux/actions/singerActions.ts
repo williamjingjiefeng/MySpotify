@@ -1,10 +1,15 @@
 import * as singerApi from "../../api/singerApi";
 import { Dispatch } from "../dispatch/StaticDispatch";
-import { ISinger } from "../dispatch/Singer/Singer";
+import { DefaultUIState } from "../dispatch/UI/UIState";
+import { beginApiCall, endApiCall } from "./apiStatusActions";
 
 export function loadSingers() {
-    return function (dispatch?: React.Dispatch<ISinger[]>) {
-        Dispatch.UI.BeginApiCall(null);
+    return function (dispatch?: React.Dispatch<any>) {
+        if (dispatch) {
+            dispatch(beginApiCall());
+        } else {
+            Dispatch.UI.BeginApiCall(DefaultUIState);
+        }
         return singerApi
             .getSingers()
             .then(singers => {
@@ -14,7 +19,11 @@ export function loadSingers() {
                 throw error;
             })
             .finally(() => {
-                Dispatch.UI.EndApiCall(null);
+                if (dispatch) {
+                    dispatch(endApiCall());
+                } else {
+                    Dispatch.UI.EndApiCall(DefaultUIState);
+                }
             });
     };
 }
