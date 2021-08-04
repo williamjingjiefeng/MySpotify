@@ -1,7 +1,7 @@
+import { newSong } from "../../../tools/mockMusics";
 import React, { useState } from "react";
 import { connect } from "react-redux";
 import SongForm from "./SongForm";
-import { newSong } from "../../../tools/mockMusics";
 import Spinner from "../common/Spinner";
 import { toast } from "react-toastify";
 import useFetch from "../../services/useFetch";
@@ -12,14 +12,11 @@ import { RouteComponentProps } from 'react-router-dom';
 import { ISinger } from "../../redux/dispatch/Singer/Singer";
 import { IAlbum } from "../../redux/dispatch/Album/Album";
 import { IAppState } from "../../redux/AppState";
-
-interface IHistory {
-    push: (route: string) => {}
-}
+import { IHistory } from "../../redux/IHistory";
 
 interface MyPropsFromStore {
-    songs: ISong[];
     song: ISong;
+    songs: ISong[];
     singers: ISinger[];
     albums: IAlbum[];
 }
@@ -104,7 +101,7 @@ interface OwnProps extends RouteComponentProps<any> {
 
 function mapStateToProps(state: IAppState, ownProps: OwnProps): MyPropsFromStore {
     const youtubeId = ownProps.match.params.youtubeId;
-    const song =
+    const song: ISong =
         youtubeId && state.Song.Songs.length > 0
             ? getSongByYoutubeId(state.Song.Songs, youtubeId) ?? newSong
             : newSong;

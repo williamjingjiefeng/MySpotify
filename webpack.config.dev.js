@@ -8,7 +8,7 @@ module.exports = {
   mode: "development",
   target: "web",
   devtool: "cheap-module-source-map",
-  entry: "./src/index",
+  entry: "./src/index.tsx",
   output: {
     path: path.resolve(__dirname, "build"),
     publicPath: "/",

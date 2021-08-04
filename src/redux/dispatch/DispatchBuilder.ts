@@ -1,6 +1,6 @@
 
 import { Reducer, Action, Store } from "redux";
-import { store } from "../../index.js";
+import { store } from "../../index";
 
 /**
  * Helper class to make action dispatchers (self-dispatching action creator) and also reducers.
