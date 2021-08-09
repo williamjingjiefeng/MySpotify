@@ -1,8 +1,8 @@
 import { useState, useRef, useEffect, MutableRefObject } from "react";
 
-export default function useFetchAll(urls: string[]) {
+export default function useFetchAll<TS>(urls: string[], defaultS: TS) {
     const prevUrls: MutableRefObject<string[]> = useRef([]);
-    const [data, setData] = useState(null);
+    const [data, setData] = useState<TS>(defaultS);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
 

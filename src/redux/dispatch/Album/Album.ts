@@ -1,6 +1,6 @@
 
 export interface IAlbum {
     id: number;
-    singerId: string;
+    singerId: number;
     name: string;
 };
