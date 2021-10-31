@@ -48,6 +48,7 @@ export default function SingerList({ singers, history }: IMyProps) {
                                                     <td style={{ textAlign: "right" }}>
                                                         <button
                                                             className="btn"
+                                                            disabled={queue.filter((y) => y.name === z.name).length !== 0}
                                                             onClick={() => {
                                                                 if (queue.find((y) => y.name === z.name)) {
                                                                     toast.success(
